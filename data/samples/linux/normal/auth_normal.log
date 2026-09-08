@@ -1,0 +1,500 @@
+Sep 05 04:52:37 linux-server sshd[40918]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 03 03:18:37 linux-server sshd[35854]: Accepted password for sysadmin from 10.0.0.89 port 53876 ssh2
+Sep 02 20:14:37 linux-server sshd[79068]: pam_unix(sshd:session): session closed for user admin
+Sep 01 20:45:37 linux-server sshd[52729]: Accepted password for admin from 192.168.1.132 port 62349 ssh2
+Sep 03 13:47:37 linux-server sshd[42130]: pam_unix(sshd:session): session closed for user backup
+Sep 01 00:14:37 linux-server sshd[36887]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 06 04:49:37 linux-server sshd[65827]: pam_unix(sshd:session): session closed for user developer
+Sep 05 22:02:37 linux-server sshd[62360]: pam_unix(sshd:session): session closed for user centos
+Sep 03 19:38:37 linux-server sshd[33597]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 02 15:02:37 linux-server sshd[51044]: Accepted password for jenkins from 192.168.1.87 port 41013 ssh2
+Sep 04 07:47:37 linux-server sshd[32041]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 03 02:17:37 linux-server sshd[33112]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 04 11:37:37 linux-server sshd[84243]: Accepted password for backup from 172.16.0.18 port 64839 ssh2
+Sep 03 12:07:37 linux-server sshd[79507]: Accepted password for devops from 192.168.1.104 port 41446 ssh2
+Sep 01 10:43:37 linux-server sshd[47055]: pam_unix(sshd:session): session closed for user jenkins
+Aug 31 22:23:37 linux-server sshd[51018]: Accepted password for backup from 203.0.113.252 port 62463 ssh2
+Sep 04 06:40:37 linux-server sshd[97141]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 06 07:38:37 linux-server sshd[89646]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 01 07:01:37 linux-server sshd[87016]: Accepted password for backup from 10.0.0.198 port 41309 ssh2
+Sep 03 22:42:37 linux-server sshd[54963]: Accepted password for backup from 10.0.0.126 port 60414 ssh2
+Sep 05 16:17:37 linux-server sshd[65881]: Accepted password for admin from 172.16.0.55 port 41967 ssh2
+Sep 01 13:53:37 linux-server sshd[98445]: Accepted password for admin from 10.0.0.165 port 54622 ssh2
+Sep 01 09:26:37 linux-server sshd[55699]: pam_unix(sshd:session): session closed for user jenkins
+Sep 06 00:43:37 linux-server sshd[85802]: pam_unix(sshd:session): session closed for user sarah
+Sep 05 03:32:37 linux-server sshd[21905]: Accepted password for webmaster from 192.168.1.212 port 41853 ssh2
+Sep 01 23:25:37 linux-server sshd[90819]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 05 18:30:37 linux-server sshd[48071]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 11:10:37 linux-server sshd[4331]: Accepted password for ubuntu from 172.16.0.251 port 49528 ssh2
+Sep 01 16:06:37 linux-server sshd[50700]: pam_unix(sshd:session): session closed for user webmaster
+Sep 01 15:25:37 linux-server sshd[99902]: pam_unix(sshd:session): session closed for user sarah
+Sep 04 17:44:37 linux-server sshd[16291]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 03 14:52:37 linux-server sshd[15154]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 14:23:37 linux-server sshd[29821]: pam_unix(sshd:session): session closed for user webmaster
+Sep 05 03:59:37 linux-server sshd[50592]: Accepted password for backup from 192.168.1.27 port 50249 ssh2
+Sep 02 03:44:37 linux-server sshd[54497]: Accepted password for jenkins from 203.0.113.173 port 62658 ssh2
+Sep 04 23:14:37 linux-server sshd[60150]: Accepted password for sarah from 172.16.0.49 port 44077 ssh2
+Sep 02 03:15:37 linux-server sshd[69577]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 04 07:06:37 linux-server sshd[15626]: Accepted password for deploy from 172.16.0.18 port 55803 ssh2
+Sep 04 11:00:37 linux-server sshd[47316]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 03 06:25:37 linux-server sshd[49870]: Accepted password for deploy from 192.168.1.101 port 59911 ssh2
+Sep 04 02:49:37 linux-server sshd[54114]: Accepted password for john from 10.0.0.122 port 48288 ssh2
+Aug 31 16:19:37 linux-server sshd[30045]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 04 12:59:37 linux-server sshd[1995]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 05 02:22:37 linux-server sshd[15074]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 01 06:11:37 linux-server sshd[56660]: pam_unix(sshd:session): session closed for user deploy
+Sep 06 00:53:37 linux-server sshd[75478]: pam_unix(sshd:session): session closed for user devops
+Sep 05 07:31:37 linux-server sshd[50509]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 02 04:48:37 linux-server sshd[83341]: pam_unix(sshd:session): session closed for user centos
+Sep 04 07:24:37 linux-server sshd[86413]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 01 10:22:37 linux-server sshd[45594]: Accepted password for deploy from 203.0.113.154 port 57748 ssh2
+Aug 31 18:25:37 linux-server sshd[40945]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Aug 31 20:38:37 linux-server sshd[28323]: pam_unix(sshd:session): session closed for user centos
+Sep 02 12:09:37 linux-server sshd[8432]: Accepted password for sysadmin from 172.16.0.190 port 55810 ssh2
+Sep 05 18:00:37 linux-server sshd[9928]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 06 06:43:37 linux-server sshd[18008]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 03 14:18:37 linux-server sshd[33381]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 02 19:07:37 linux-server sshd[73314]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 02 05:52:37 linux-server sshd[22937]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 05 22:14:37 linux-server sshd[49255]: Accepted password for ubuntu from 203.0.113.73 port 54542 ssh2
+Sep 02 23:16:37 linux-server sshd[74094]: Accepted password for developer from 10.0.0.200 port 50687 ssh2
+Sep 01 09:45:37 linux-server sshd[63845]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 05 21:34:37 linux-server sshd[3244]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 06 05:23:37 linux-server sshd[20522]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 04 21:25:37 linux-server sshd[3563]: pam_unix(sshd:session): session closed for user sarah
+Sep 03 23:59:37 linux-server sshd[55588]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 01 06:41:37 linux-server sshd[64010]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 03 11:49:37 linux-server sshd[83360]: Accepted password for jenkins from 203.0.113.233 port 44306 ssh2
+Aug 31 19:05:37 linux-server sshd[88502]: Accepted password for admin from 172.16.0.68 port 43673 ssh2
+Sep 03 00:27:37 linux-server sshd[92889]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 03 12:54:37 linux-server sshd[36402]: pam_unix(sshd:session): session closed for user backup
+Sep 01 09:54:37 linux-server sshd[93035]: Accepted password for sarah from 203.0.113.139 port 55616 ssh2
+Sep 04 04:33:37 linux-server sshd[82290]: Accepted password for devops from 10.0.0.112 port 53861 ssh2
+Sep 02 11:11:37 linux-server sshd[31867]: pam_unix(sshd:session): session closed for user sarah
+Sep 03 01:14:37 linux-server sshd[75409]: Accepted password for sysadmin from 10.0.0.225 port 54159 ssh2
+Sep 02 17:14:37 linux-server sshd[32127]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 06 08:40:37 linux-server sshd[55821]: pam_unix(sshd:session): session closed for user deploy
+Sep 04 11:55:37 linux-server sshd[33432]: pam_unix(sshd:session): session closed for user john
+Sep 02 17:38:37 linux-server sshd[69824]: pam_unix(sshd:session): session closed for user webmaster
+Aug 31 20:22:37 linux-server sshd[9834]: Accepted password for backup from 10.0.0.221 port 47548 ssh2
+Sep 01 02:58:37 linux-server sshd[74259]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 02 03:32:37 linux-server sshd[26663]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 21:32:37 linux-server sshd[64224]: Accepted password for sarah from 203.0.113.69 port 53184 ssh2
+Sep 03 22:19:37 linux-server sshd[53245]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 01 21:00:37 linux-server sshd[85547]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 31 18:48:37 linux-server sshd[42316]: Accepted password for centos from 203.0.113.89 port 53201 ssh2
+Aug 31 14:20:37 linux-server sshd[54552]: Accepted password for developer from 172.16.0.40 port 44743 ssh2
+Sep 05 00:43:37 linux-server sshd[76852]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 01 17:15:37 linux-server sshd[11356]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 03 02:25:37 linux-server sshd[64400]: pam_unix(sshd:session): session closed for user backup
+Sep 04 06:03:37 linux-server sshd[85428]: Accepted password for centos from 203.0.113.184 port 41569 ssh2
+Sep 02 08:01:37 linux-server sshd[30309]: pam_unix(sshd:session): session closed for user centos
+Sep 02 17:02:37 linux-server sshd[50373]: Accepted password for centos from 10.0.0.55 port 57352 ssh2
+Sep 01 21:23:37 linux-server sshd[96121]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 04 06:12:37 linux-server sshd[6098]: Accepted password for john from 172.16.0.197 port 47246 ssh2
+Sep 02 09:09:37 linux-server sshd[20746]: Accepted password for john from 203.0.113.130 port 59716 ssh2
+Sep 05 10:08:37 linux-server sshd[20936]: Accepted password for jenkins from 10.0.0.172 port 48972 ssh2
+Sep 02 07:37:37 linux-server sshd[50847]: pam_unix(sshd:session): session closed for user admin
+Sep 02 18:31:37 linux-server sshd[80362]: pam_unix(sshd:session): session closed for user admin
+Sep 02 15:53:37 linux-server sshd[98418]: Accepted password for centos from 192.168.1.85 port 53821 ssh2
+Sep 04 15:24:37 linux-server sshd[23895]: pam_unix(sshd:session): session closed for user developer
+Aug 31 15:56:37 linux-server sshd[6257]: pam_unix(sshd:session): session closed for user developer
+Sep 02 00:14:37 linux-server sshd[36494]: pam_unix(sshd:session): session closed for user developer
+Sep 03 15:20:37 linux-server sshd[41306]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 05 01:23:37 linux-server sshd[26108]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 12:21:37 linux-server sshd[54794]: Accepted password for ubuntu from 172.16.0.144 port 58869 ssh2
+Sep 04 18:57:37 linux-server sshd[37460]: pam_unix(sshd:session): session closed for user sarah
+Sep 01 05:42:37 linux-server sshd[70572]: pam_unix(sshd:session): session closed for user developer
+Sep 02 10:50:37 linux-server sshd[20537]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 04 18:20:37 linux-server sshd[68206]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 03 03:29:37 linux-server sshd[26808]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 05 19:40:37 linux-server sshd[86991]: Accepted password for devops from 10.0.0.55 port 45842 ssh2
+Sep 06 10:46:37 linux-server sshd[75065]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 01 17:03:37 linux-server sshd[25099]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 03 18:36:37 linux-server sshd[66706]: Accepted password for backup from 10.0.0.101 port 65169 ssh2
+Sep 04 09:23:37 linux-server sshd[46219]: Accepted password for john from 10.0.0.217 port 53299 ssh2
+Sep 02 22:31:37 linux-server sshd[70898]: pam_unix(sshd:session): session closed for user webmaster
+Sep 04 23:50:37 linux-server sshd[99938]: pam_unix(sshd:session): session closed for user jenkins
+Sep 04 09:34:37 linux-server sshd[27893]: pam_unix(sshd:session): session closed for user john
+Sep 02 05:29:37 linux-server sshd[62689]: Accepted password for sysadmin from 203.0.113.109 port 49084 ssh2
+Sep 01 02:29:37 linux-server sshd[86848]: Accepted password for jenkins from 203.0.113.189 port 43426 ssh2
+Sep 01 12:36:37 linux-server sshd[56077]: pam_unix(sshd:session): session closed for user admin
+Sep 06 01:28:37 linux-server sshd[7399]: Accepted password for deploy from 192.168.1.36 port 59346 ssh2
+Sep 01 03:27:37 linux-server sshd[66039]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 01 11:12:37 linux-server sshd[20148]: Accepted password for backup from 10.0.0.194 port 43142 ssh2
+Sep 01 01:51:37 linux-server sshd[91348]: Accepted password for developer from 203.0.113.239 port 51660 ssh2
+Sep 03 08:30:37 linux-server sshd[22303]: pam_unix(sshd:session): session closed for user developer
+Sep 04 00:14:37 linux-server sshd[9628]: Accepted password for ubuntu from 203.0.113.209 port 61748 ssh2
+Sep 05 21:24:37 linux-server sshd[65865]: Accepted password for ubuntu from 203.0.113.242 port 46177 ssh2
+Sep 06 05:34:37 linux-server sshd[11944]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 06 01:11:37 linux-server sshd[48339]: Accepted password for devops from 192.168.1.30 port 46163 ssh2
+Sep 01 09:06:37 linux-server sshd[55012]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 03 19:24:37 linux-server sshd[84934]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 04 19:40:37 linux-server sshd[96383]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 02 18:04:37 linux-server sshd[94269]: Accepted password for developer from 203.0.113.223 port 61518 ssh2
+Sep 05 08:00:37 linux-server sshd[72922]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 06 12:18:37 linux-server sshd[80975]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 04 00:46:37 linux-server sshd[32830]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 13:39:37 linux-server sshd[53766]: Accepted password for admin from 10.0.0.173 port 46844 ssh2
+Aug 31 22:56:37 linux-server sshd[34148]: pam_unix(sshd:session): session closed for user devops
+Aug 31 14:54:37 linux-server sshd[8261]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 02 02:29:37 linux-server sshd[81376]: Accepted password for admin from 10.0.0.26 port 44505 ssh2
+Sep 02 01:17:37 linux-server sshd[7263]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 06 11:37:37 linux-server sshd[91870]: Accepted password for centos from 10.0.0.129 port 63094 ssh2
+Sep 05 23:41:37 linux-server sshd[43984]: Accepted password for devops from 203.0.113.95 port 42222 ssh2
+Sep 03 18:22:37 linux-server sshd[13352]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 02 15:25:37 linux-server sshd[27048]: Accepted password for deploy from 192.168.1.66 port 51416 ssh2
+Sep 03 21:14:37 linux-server sshd[50398]: Accepted password for deploy from 203.0.113.169 port 43726 ssh2
+Sep 03 07:41:37 linux-server sshd[97235]: pam_unix(sshd:session): session closed for user admin
+Sep 02 03:05:37 linux-server sshd[29837]: Accepted password for backup from 10.0.0.63 port 41355 ssh2
+Sep 02 04:22:37 linux-server sshd[97996]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Aug 31 16:02:37 linux-server sshd[72652]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 04 22:02:37 linux-server sshd[86413]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 06 11:51:37 linux-server sshd[72690]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 02 13:24:37 linux-server sshd[7562]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 01 21:30:37 linux-server sshd[44893]: Accepted password for backup from 10.0.0.127 port 59632 ssh2
+Sep 01 03:19:37 linux-server sshd[36661]: pam_unix(sshd:session): session closed for user sarah
+Sep 04 21:53:37 linux-server sshd[12837]: Accepted password for sysadmin from 172.16.0.217 port 49834 ssh2
+Sep 03 16:00:37 linux-server sshd[13316]: Accepted password for backup from 172.16.0.109 port 62798 ssh2
+Sep 01 02:05:37 linux-server sshd[48906]: Accepted password for backup from 203.0.113.239 port 60787 ssh2
+Sep 04 19:16:37 linux-server sshd[60049]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 01 16:53:37 linux-server sshd[71611]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 05 03:10:37 linux-server sshd[91364]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 02 01:22:37 linux-server sshd[79510]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 04 17:36:37 linux-server sshd[79853]: Accepted password for sarah from 192.168.1.192 port 61007 ssh2
+Sep 04 04:00:37 linux-server sshd[57342]: Accepted password for deploy from 203.0.113.64 port 53478 ssh2
+Sep 04 03:48:37 linux-server sshd[27355]: pam_unix(sshd:session): session closed for user sarah
+Sep 05 14:12:37 linux-server sshd[44262]: Accepted password for jenkins from 192.168.1.25 port 55614 ssh2
+Sep 05 12:23:37 linux-server sshd[37122]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 05:18:37 linux-server sshd[67172]: pam_unix(sshd:session): session closed for user devops
+Sep 02 06:37:37 linux-server sshd[28854]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 05 09:10:37 linux-server sshd[96233]: pam_unix(sshd:session): session closed for user backup
+Sep 01 23:45:37 linux-server sshd[1651]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 04 19:31:37 linux-server sshd[25107]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 02 07:20:37 linux-server sshd[77971]: Accepted password for admin from 192.168.1.156 port 45357 ssh2
+Sep 02 10:56:37 linux-server sshd[74046]: Accepted password for john from 203.0.113.54 port 40664 ssh2
+Sep 05 21:45:37 linux-server sshd[4875]: pam_unix(sshd:session): session closed for user jenkins
+Sep 05 13:09:37 linux-server sshd[81359]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 03 20:49:37 linux-server sshd[17502]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 06 03:45:37 linux-server sshd[68268]: pam_unix(sshd:session): session closed for user webmaster
+Sep 01 14:48:37 linux-server sshd[24961]: Accepted password for jenkins from 172.16.0.240 port 58649 ssh2
+Sep 01 10:11:37 linux-server sshd[73933]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 02 06:44:37 linux-server sshd[18168]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 03 14:01:37 linux-server sshd[18720]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 06 07:20:37 linux-server sshd[63382]: Accepted password for backup from 192.168.1.127 port 55874 ssh2
+Aug 31 22:41:37 linux-server sshd[56987]: Accepted password for sysadmin from 172.16.0.248 port 56709 ssh2
+Sep 05 15:39:37 linux-server sshd[80548]: Accepted password for devops from 192.168.1.57 port 53546 ssh2
+Sep 04 05:43:37 linux-server sshd[82199]: Accepted password for developer from 203.0.113.140 port 62024 ssh2
+Sep 01 08:19:37 linux-server sshd[41487]: Accepted password for jenkins from 192.168.1.10 port 53211 ssh2
+Sep 01 03:56:37 linux-server sshd[69076]: pam_unix(sshd:session): session closed for user backup
+Sep 05 01:00:37 linux-server sshd[14413]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 04 02:08:37 linux-server sshd[23644]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 02 01:06:37 linux-server sshd[83893]: Accepted password for devops from 172.16.0.41 port 64345 ssh2
+Sep 02 10:35:37 linux-server sshd[70339]: pam_unix(sshd:session): session closed for user sarah
+Sep 05 12:49:37 linux-server sshd[62946]: Accepted password for deploy from 203.0.113.189 port 43960 ssh2
+Sep 02 10:22:37 linux-server sshd[92645]: pam_unix(sshd:session): session closed for user deploy
+Sep 03 00:03:37 linux-server sshd[80771]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Aug 31 16:54:37 linux-server sshd[69034]: Accepted password for sysadmin from 192.168.1.88 port 40541 ssh2
+Sep 05 07:17:37 linux-server sshd[94558]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 03 05:28:37 linux-server sshd[5482]: pam_unix(sshd:session): session closed for user webmaster
+Sep 01 05:26:37 linux-server sshd[44204]: Accepted password for centos from 203.0.113.103 port 54840 ssh2
+Sep 06 03:28:37 linux-server sshd[12298]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 02 21:21:37 linux-server sshd[14250]: Accepted password for deploy from 192.168.1.71 port 46923 ssh2
+Sep 01 06:05:37 linux-server sshd[64873]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 01 13:11:37 linux-server sshd[47155]: Accepted password for webmaster from 10.0.0.175 port 58678 ssh2
+Sep 02 13:49:37 linux-server sshd[68768]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 04 20:35:37 linux-server sshd[23912]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 03 03:39:37 linux-server sshd[49843]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 05 06:05:37 linux-server sshd[64308]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 04 15:03:37 linux-server sshd[47956]: Accepted password for centos from 203.0.113.191 port 61602 ssh2
+Sep 03 07:21:37 linux-server sshd[89884]: Accepted password for sysadmin from 203.0.113.121 port 43001 ssh2
+Sep 03 13:23:37 linux-server sshd[93050]: pam_unix(sshd:session): session closed for user backup
+Sep 03 17:57:37 linux-server sshd[42744]: pam_unix(sshd:session): session closed for user john
+Sep 03 17:36:37 linux-server sshd[57228]: pam_unix(sshd:session): session closed for user centos
+Sep 03 05:54:37 linux-server sshd[26640]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 01 22:00:37 linux-server sshd[64012]: pam_unix(sshd:session): session closed for user developer
+Sep 01 07:31:37 linux-server sshd[22820]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 04 05:49:37 linux-server sshd[16776]: Accepted password for backup from 203.0.113.114 port 50722 ssh2
+Sep 02 17:07:37 linux-server sshd[33102]: Accepted password for centos from 172.16.0.190 port 51316 ssh2
+Sep 05 19:49:37 linux-server sshd[56894]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 04 15:54:37 linux-server sshd[83609]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 06 09:53:37 linux-server sshd[39833]: Accepted password for ubuntu from 192.168.1.151 port 60935 ssh2
+Aug 31 21:50:37 linux-server sshd[27782]: Accepted password for sarah from 172.16.0.65 port 48754 ssh2
+Sep 01 12:56:37 linux-server sshd[86811]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 03 16:46:37 linux-server sshd[86749]: pam_unix(sshd:session): session closed for user webmaster
+Sep 05 16:29:37 linux-server sshd[72588]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 03 20:08:37 linux-server sshd[88521]: Accepted password for john from 10.0.0.44 port 41663 ssh2
+Sep 03 23:15:37 linux-server sshd[62228]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 04 22:31:37 linux-server sshd[49679]: Accepted password for devops from 192.168.1.21 port 51459 ssh2
+Aug 31 17:24:37 linux-server sshd[40143]: pam_unix(sshd:session): session closed for user developer
+Sep 03 16:28:37 linux-server sshd[62708]: pam_unix(sshd:session): session closed for user webmaster
+Sep 05 06:00:37 linux-server sshd[19776]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 06 05:28:37 linux-server sshd[47094]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 06 05:52:37 linux-server sshd[50669]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 02 04:30:37 linux-server sshd[29635]: Accepted password for admin from 10.0.0.211 port 56912 ssh2
+Sep 03 09:13:37 linux-server sshd[22146]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 06 10:14:37 linux-server sshd[29073]: Accepted password for devops from 203.0.113.245 port 59407 ssh2
+Sep 01 03:36:37 linux-server sshd[45268]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 03 07:50:37 linux-server sshd[74392]: Accepted password for sysadmin from 192.168.1.41 port 40684 ssh2
+Sep 06 09:09:37 linux-server sshd[38730]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 05 13:04:37 linux-server sshd[47688]: Accepted password for john from 172.16.0.38 port 47320 ssh2
+Sep 03 08:03:37 linux-server sshd[14312]: pam_unix(sshd:session): session closed for user backup
+Sep 01 03:03:37 linux-server sshd[42789]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 06 08:54:37 linux-server sshd[4875]: pam_unix(sshd:session): session closed for user developer
+Sep 05 10:54:37 linux-server sshd[48611]: Accepted password for backup from 203.0.113.137 port 44973 ssh2
+Sep 02 00:09:37 linux-server sshd[35626]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 06 07:52:37 linux-server sshd[20655]: Accepted password for devops from 203.0.113.150 port 59747 ssh2
+Sep 04 04:09:37 linux-server sshd[89772]: Accepted password for backup from 203.0.113.19 port 49990 ssh2
+Sep 03 16:22:37 linux-server sshd[58628]: pam_unix(sshd:session): session closed for user developer
+Sep 01 20:32:37 linux-server sshd[35109]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 01 19:21:37 linux-server sshd[53083]: Accepted password for sarah from 172.16.0.52 port 59646 ssh2
+Sep 03 03:12:37 linux-server sshd[44984]: Accepted password for admin from 203.0.113.50 port 41141 ssh2
+Sep 02 08:35:37 linux-server sshd[32995]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 04 01:28:37 linux-server sshd[96573]: pam_unix(sshd:session): session closed for user jenkins
+Sep 04 08:09:37 linux-server sshd[98156]: pam_unix(sshd:session): session closed for user developer
+Sep 02 19:22:37 linux-server sshd[22338]: Accepted password for backup from 10.0.0.162 port 48349 ssh2
+Sep 06 02:38:37 linux-server sshd[74771]: pam_unix(sshd:session): session closed for user sarah
+Sep 04 16:34:37 linux-server sshd[4134]: Accepted password for jenkins from 172.16.0.167 port 51608 ssh2
+Sep 05 05:38:37 linux-server sshd[59798]: pam_unix(sshd:session): session closed for user deploy
+Sep 03 09:25:37 linux-server sshd[11531]: Accepted password for admin from 192.168.1.77 port 55944 ssh2
+Sep 06 08:10:37 linux-server sshd[37436]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 06 04:57:37 linux-server sshd[53585]: pam_unix(sshd:session): session closed for user devops
+Sep 03 07:11:37 linux-server sshd[76983]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 03 09:46:37 linux-server sshd[19071]: Accepted password for webmaster from 10.0.0.196 port 55604 ssh2
+Aug 31 17:48:37 linux-server sshd[58890]: Accepted password for webmaster from 172.16.0.83 port 43990 ssh2
+Sep 06 02:10:37 linux-server sshd[74861]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 04 00:26:37 linux-server sshd[13290]: pam_unix(sshd:session): session closed for user admin
+Sep 02 22:24:37 linux-server sshd[16690]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 06 11:10:37 linux-server sshd[3877]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 05 06:40:37 linux-server sshd[53358]: Accepted password for centos from 10.0.0.30 port 62049 ssh2
+Sep 02 19:50:37 linux-server sshd[16124]: Accepted password for admin from 192.168.1.106 port 42570 ssh2
+Sep 05 13:50:37 linux-server sshd[79510]: pam_unix(sshd:session): session closed for user sarah
+Sep 06 06:56:37 linux-server sshd[48549]: Accepted password for webmaster from 203.0.113.86 port 63925 ssh2
+Sep 02 00:21:37 linux-server sshd[98367]: pam_unix(sshd:session): session closed for user deploy
+Sep 02 01:36:37 linux-server sshd[84606]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 04 10:32:37 linux-server sshd[59253]: Accepted password for centos from 192.168.1.15 port 55616 ssh2
+Sep 02 08:06:37 linux-server sshd[83959]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 03 15:48:37 linux-server sshd[58919]: pam_unix(sshd:session): session closed for user devops
+Sep 01 19:39:37 linux-server sshd[12712]: Accepted password for webmaster from 192.168.1.176 port 64714 ssh2
+Sep 04 14:37:37 linux-server sshd[53437]: Accepted password for admin from 172.16.0.82 port 42413 ssh2
+Sep 04 15:49:37 linux-server sshd[60473]: Accepted password for jenkins from 203.0.113.98 port 59351 ssh2
+Sep 05 11:33:37 linux-server sshd[60312]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 01 17:35:37 linux-server sshd[7821]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 17:03:37 linux-server sshd[88197]: Accepted password for john from 203.0.113.118 port 48997 ssh2
+Sep 05 23:09:37 linux-server sshd[27575]: Accepted password for developer from 203.0.113.18 port 64237 ssh2
+Sep 05 10:47:37 linux-server sshd[20250]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 02 23:39:37 linux-server sshd[30871]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 01 13:02:37 linux-server sshd[30933]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 02:36:37 linux-server sshd[20507]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 05 02:45:37 linux-server sshd[34739]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 04 01:34:37 linux-server sshd[84940]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 05 16:58:37 linux-server sshd[40733]: Accepted password for sarah from 10.0.0.26 port 47075 ssh2
+Sep 04 01:03:37 linux-server sshd[96276]: pam_unix(sshd:session): session closed for user deploy
+Sep 02 16:16:37 linux-server sshd[81479]: pam_unix(sshd:session): session closed for user deploy
+Sep 02 02:04:37 linux-server sshd[28049]: pam_unix(sshd:session): session closed for user admin
+Sep 03 05:22:37 linux-server sshd[33855]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 03 15:30:37 linux-server sshd[81201]: pam_unix(sshd:session): session closed for user deploy
+Sep 03 10:43:37 linux-server sshd[12305]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 01 22:27:37 linux-server sshd[62175]: pam_unix(sshd:session): session closed for user webmaster
+Sep 03 04:16:37 linux-server sshd[75411]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 04 13:04:37 linux-server sshd[22358]: Accepted password for john from 192.168.1.223 port 52013 ssh2
+Sep 01 13:41:37 linux-server sshd[36237]: Accepted password for ubuntu from 10.0.0.196 port 60288 ssh2
+Sep 01 11:37:37 linux-server sshd[92930]: Accepted password for developer from 172.16.0.117 port 41118 ssh2
+Aug 31 15:43:37 linux-server sshd[74947]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 02 17:58:37 linux-server sshd[25919]: Accepted password for deploy from 192.168.1.130 port 41322 ssh2
+Sep 03 21:51:37 linux-server sshd[89374]: Accepted password for developer from 192.168.1.169 port 43528 ssh2
+Sep 01 15:53:37 linux-server sshd[16643]: Accepted password for backup from 203.0.113.89 port 43937 ssh2
+Sep 01 17:43:37 linux-server sshd[44380]: Accepted password for deploy from 192.168.1.79 port 52193 ssh2
+Sep 01 05:08:37 linux-server sshd[87252]: Accepted password for devops from 10.0.0.38 port 57566 ssh2
+Sep 03 23:34:37 linux-server sshd[25769]: pam_unix(sshd:session): session closed for user jenkins
+Sep 05 08:30:37 linux-server sshd[6707]: pam_unix(sshd:session): session closed for user webmaster
+Sep 04 14:10:37 linux-server sshd[63199]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 01 00:26:37 linux-server sshd[51499]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 03 22:47:37 linux-server sshd[78119]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 02 14:48:37 linux-server sshd[85993]: pam_unix(sshd:session): session closed for user backup
+Sep 06 06:29:37 linux-server sshd[23047]: Accepted password for backup from 10.0.0.17 port 45380 ssh2
+Sep 05 10:24:37 linux-server sshd[15031]: Accepted password for john from 192.168.1.87 port 45821 ssh2
+Sep 01 20:05:37 linux-server sshd[6400]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 04 20:00:37 linux-server sshd[60574]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 01 18:30:37 linux-server sshd[31080]: Accepted password for centos from 172.16.0.14 port 55722 ssh2
+Sep 02 02:34:37 linux-server sshd[82178]: Accepted password for jenkins from 192.168.1.88 port 63934 ssh2
+Sep 04 12:38:37 linux-server sshd[80774]: Accepted password for developer from 172.16.0.56 port 44228 ssh2
+Sep 06 01:59:37 linux-server sshd[53723]: Accepted password for deploy from 203.0.113.133 port 50116 ssh2
+Aug 31 16:44:37 linux-server sshd[81850]: Accepted password for sarah from 192.168.1.219 port 44004 ssh2
+Sep 01 04:01:37 linux-server sshd[21378]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 03 19:00:37 linux-server sshd[48291]: pam_unix(sshd:session): session closed for user sarah
+Aug 31 19:34:37 linux-server sshd[73466]: Accepted password for webmaster from 10.0.0.93 port 48601 ssh2
+Sep 01 14:35:37 linux-server sshd[48963]: Accepted password for john from 172.16.0.159 port 58540 ssh2
+Sep 04 10:01:37 linux-server sshd[23445]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 05 00:48:37 linux-server sshd[80387]: Accepted password for webmaster from 203.0.113.229 port 52446 ssh2
+Sep 04 17:07:37 linux-server sshd[49236]: pam_unix(sshd:session): session closed for user webmaster
+Sep 06 08:46:37 linux-server sshd[4793]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 12:08:37 linux-server sshd[68149]: pam_unix(sshd:session): session closed for user devops
+Sep 02 09:38:37 linux-server sshd[2562]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Aug 31 21:58:37 linux-server sshd[19655]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 05 14:47:37 linux-server sshd[60761]: pam_unix(sshd:session): session closed for user admin
+Sep 02 12:39:37 linux-server sshd[47866]: Accepted password for ubuntu from 172.16.0.224 port 40125 ssh2
+Sep 03 12:43:37 linux-server sshd[59145]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 04 13:09:37 linux-server sshd[44257]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 01 18:05:37 linux-server sshd[41005]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Aug 31 19:19:37 linux-server sshd[71411]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 03 20:19:37 linux-server sshd[35635]: Accepted password for devops from 203.0.113.113 port 54044 ssh2
+Aug 31 15:23:37 linux-server sshd[16996]: pam_unix(sshd:session): session closed for user admin
+Sep 05 00:06:37 linux-server sshd[44622]: pam_unix(sshd:session): session closed for user deploy
+Sep 04 16:06:37 linux-server sshd[57485]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 03 14:39:37 linux-server sshd[70854]: pam_unix(sshd:session): session closed for user admin
+Sep 06 01:49:37 linux-server sshd[30586]: Accepted password for sarah from 10.0.0.144 port 55147 ssh2
+Sep 01 07:54:37 linux-server sshd[79754]: Accepted password for sarah from 10.0.0.119 port 42150 ssh2
+Sep 01 04:33:37 linux-server sshd[88796]: Accepted password for ubuntu from 203.0.113.144 port 41400 ssh2
+Sep 06 12:30:37 linux-server sshd[61797]: pam_unix(sshd:session): session closed for user centos
+Sep 05 15:26:37 linux-server sshd[28238]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Aug 31 21:29:37 linux-server sshd[67868]: pam_unix(sshd:session): session closed for user backup
+Aug 31 22:14:37 linux-server sshd[40595]: pam_unix(sshd:session): session closed for user backup
+Sep 06 08:23:37 linux-server sshd[72877]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 01 04:13:37 linux-server sshd[82523]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 05 13:22:37 linux-server sshd[50631]: pam_unix(sshd:session): session closed for user admin
+Aug 31 15:07:37 linux-server sshd[71106]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 02 10:00:37 linux-server sshd[50382]: pam_unix(sshd:session): session closed for user sarah
+Sep 05 22:44:37 linux-server sshd[31769]: Accepted password for sysadmin from 172.16.0.174 port 51995 ssh2
+Sep 02 05:05:37 linux-server sshd[95102]: Accepted password for admin from 10.0.0.108 port 61912 ssh2
+Sep 06 05:15:37 linux-server sshd[52035]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Sep 04 06:33:37 linux-server sshd[86593]: Accepted password for sarah from 172.16.0.76 port 43194 ssh2
+Sep 05 11:38:37 linux-server sshd[69517]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 04 14:43:37 linux-server sshd[65244]: pam_unix(sshd:session): session closed for user backup
+Sep 03 11:24:37 linux-server sshd[2491]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 03 23:53:37 linux-server sshd[38109]: Accepted password for sysadmin from 192.168.1.239 port 64888 ssh2
+Sep 01 08:12:37 linux-server sshd[59429]: pam_unix(sshd:session): session closed for user deploy
+Sep 06 06:10:37 linux-server sshd[53179]: Accepted password for admin from 172.16.0.92 port 50952 ssh2
+Aug 31 20:58:37 linux-server sshd[35127]: Accepted password for devops from 10.0.0.195 port 45082 ssh2
+Sep 02 02:45:37 linux-server sshd[31194]: pam_unix(sshd:session): session closed for user centos
+Sep 03 05:05:37 linux-server sshd[9454]: pam_unix(sshd:session): session closed for user developer
+Sep 02 20:28:37 linux-server sshd[27914]: Accepted password for ubuntu from 192.168.1.22 port 48765 ssh2
+Aug 31 17:12:37 linux-server sshd[76698]: Accepted password for devops from 192.168.1.201 port 46493 ssh2
+Sep 04 03:09:37 linux-server sshd[73328]: pam_unix(sshd:session): session closed for user sarah
+Sep 06 04:26:37 linux-server sshd[94194]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 02 14:00:37 linux-server sshd[16462]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 02 13:04:37 linux-server sshd[80773]: Accepted password for jenkins from 172.16.0.138 port 45623 ssh2
+Sep 05 18:53:37 linux-server sshd[20697]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 02 08:42:37 linux-server sshd[1274]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 03 00:50:37 linux-server sshd[11967]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 01 04:55:37 linux-server sshd[20157]: pam_unix(sshd:session): session closed for user webmaster
+Sep 04 10:26:37 linux-server sshd[82570]: pam_unix(sshd:session): session closed for user sarah
+Sep 02 19:40:37 linux-server sshd[15795]: pam_unix(sshd:session): session closed for user john
+Sep 06 04:13:37 linux-server sshd[9632]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 01 05:59:37 linux-server sshd[36549]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 05 16:07:37 linux-server sshd[89108]: Accepted password for developer from 10.0.0.169 port 54517 ssh2
+Sep 04 11:23:37 linux-server sshd[83219]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 05 04:40:37 linux-server sshd[33017]: Accepted password for devops from 172.16.0.110 port 46742 ssh2
+Sep 04 04:58:37 linux-server sshd[87394]: Accepted password for webmaster from 203.0.113.173 port 44303 ssh2
+Sep 04 18:13:37 linux-server sshd[92463]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 03 10:28:37 linux-server sshd[48555]: Accepted password for sysadmin from 203.0.113.120 port 64071 ssh2
+Sep 02 06:17:37 linux-server sshd[55332]: pam_unix(sshd:session): session closed for user jenkins
+Sep 05 00:32:37 linux-server sshd[92552]: Accepted password for developer from 203.0.113.125 port 45851 ssh2
+Sep 05 17:36:37 linux-server sshd[64894]: pam_unix(sshd:session): session closed for user backup
+Sep 02 16:32:37 linux-server sshd[16122]: pam_unix(sshd:session): session closed for user webmaster
+Sep 05 01:53:37 linux-server sshd[66354]: pam_unix(sshd:session): session closed for user deploy
+Sep 06 09:27:37 linux-server sshd[31731]: pam_unix(sshd:session): session closed for user john
+Sep 01 08:48:37 linux-server sshd[23613]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 22:52:37 linux-server sshd[28712]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 04 22:39:37 linux-server sshd[47190]: pam_unix(sshd:session): session opened for user developer by (uid=0)
+Sep 02 14:09:37 linux-server sshd[66377]: Accepted password for ubuntu from 10.0.0.37 port 60540 ssh2
+Sep 04 13:15:37 linux-server sshd[18792]: pam_unix(sshd:session): session closed for user jenkins
+Sep 02 14:19:37 linux-server sshd[4071]: pam_unix(sshd:session): session closed for user deploy
+Sep 01 18:56:37 linux-server sshd[50625]: pam_unix(sshd:session): session closed for user developer
+Sep 05 11:06:37 linux-server sshd[72471]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 02 21:51:37 linux-server sshd[71717]: Accepted password for john from 192.168.1.136 port 48690 ssh2
+Sep 04 23:39:37 linux-server sshd[35972]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 01 15:40:37 linux-server sshd[86808]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 05 05:08:37 linux-server sshd[80747]: pam_unix(sshd:session): session closed for user centos
+Sep 05 19:29:37 linux-server sshd[97110]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 01 12:05:37 linux-server sshd[47547]: pam_unix(sshd:session): session closed for user backup
+Sep 02 07:45:37 linux-server sshd[20260]: pam_unix(sshd:session): session closed for user jenkins
+Sep 06 00:11:37 linux-server sshd[73866]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Aug 31 18:08:37 linux-server sshd[48372]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 06 08:01:37 linux-server sshd[36975]: Accepted password for devops from 203.0.113.103 port 46227 ssh2
+Sep 05 09:40:37 linux-server sshd[70024]: pam_unix(sshd:session): session closed for user backup
+Aug 31 19:50:37 linux-server sshd[69510]: pam_unix(sshd:session): session closed for user developer
+Sep 02 22:58:37 linux-server sshd[34770]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 06 07:46:37 linux-server sshd[73576]: Accepted password for centos from 10.0.0.3 port 44221 ssh2
+Aug 31 23:14:37 linux-server sshd[18388]: pam_unix(sshd:session): session closed for user john
+Sep 05 02:02:37 linux-server sshd[34616]: Accepted password for centos from 192.168.1.228 port 42221 ssh2
+Aug 31 18:03:37 linux-server sshd[19571]: pam_unix(sshd:session): session closed for user john
+Sep 05 23:25:37 linux-server sshd[41259]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Aug 31 21:10:37 linux-server sshd[24386]: Accepted password for sarah from 10.0.0.179 port 46056 ssh2
+Sep 04 13:54:37 linux-server sshd[9796]: Accepted password for sysadmin from 203.0.113.93 port 55365 ssh2
+Sep 04 03:34:37 linux-server sshd[18040]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 05 08:56:37 linux-server sshd[9539]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 05 06:18:37 linux-server sshd[47634]: pam_unix(sshd:session): session closed for user centos
+Sep 04 18:05:37 linux-server sshd[82010]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 02 04:14:37 linux-server sshd[54863]: pam_unix(sshd:session): session opened for user webmaster by (uid=0)
+Sep 03 04:38:37 linux-server sshd[14066]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 02 11:41:37 linux-server sshd[17134]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 03 07:04:37 linux-server sshd[34970]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 04 20:55:37 linux-server sshd[19727]: pam_unix(sshd:session): session closed for user admin
+Sep 01 00:40:37 linux-server sshd[99933]: Accepted password for devops from 172.16.0.120 port 46132 ssh2
+Sep 03 01:30:37 linux-server sshd[77710]: pam_unix(sshd:session): session closed for user sarah
+Sep 02 00:01:37 linux-server sshd[6300]: pam_unix(sshd:session): session opened for user backup by (uid=0)
+Sep 02 20:58:37 linux-server sshd[11329]: Accepted password for devops from 192.168.1.99 port 49132 ssh2
+Sep 05 15:01:37 linux-server sshd[69324]: Accepted password for sysadmin from 172.16.0.40 port 43006 ssh2
+Sep 01 16:33:37 linux-server sshd[36483]: pam_unix(sshd:session): session closed for user deploy
+Sep 02 05:21:37 linux-server sshd[88236]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 02 22:02:37 linux-server sshd[73332]: Accepted password for webmaster from 192.168.1.60 port 56354 ssh2
+Sep 02 00:43:37 linux-server sshd[10474]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 01 14:17:37 linux-server sshd[21177]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 03 06:07:37 linux-server sshd[20836]: pam_unix(sshd:session): session closed for user john
+Sep 05 20:40:37 linux-server sshd[49885]: pam_unix(sshd:session): session closed for user admin
+Sep 03 00:08:37 linux-server sshd[5553]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 01 13:30:37 linux-server sshd[55220]: pam_unix(sshd:session): session closed for user sarah
+Sep 03 01:48:37 linux-server sshd[1909]: Accepted password for devops from 10.0.0.80 port 50236 ssh2
+Sep 05 11:25:37 linux-server sshd[1726]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 01 14:56:37 linux-server sshd[27227]: pam_unix(sshd:session): session opened for user admin by (uid=0)
+Sep 01 12:30:37 linux-server sshd[56838]: pam_unix(sshd:session): session closed for user devops
+Sep 02 17:45:37 linux-server sshd[66704]: pam_unix(sshd:session): session closed for user developer
+Sep 01 00:06:37 linux-server sshd[55277]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 04 08:34:37 linux-server sshd[53020]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 03 10:13:37 linux-server sshd[80542]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Aug 31 20:13:37 linux-server sshd[43721]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Aug 31 19:24:37 linux-server sshd[16401]: Accepted password for jenkins from 10.0.0.71 port 50290 ssh2
+Sep 05 17:07:37 linux-server sshd[69779]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 04 11:48:37 linux-server sshd[83818]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 05 12:00:37 linux-server sshd[84142]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 05 14:32:37 linux-server sshd[5065]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 03 17:21:37 linux-server sshd[99925]: pam_unix(sshd:session): session closed for user deploy
+Sep 05 21:02:37 linux-server sshd[30570]: pam_unix(sshd:session): session opened for user sysadmin by (uid=0)
+Aug 31 23:40:37 linux-server sshd[5869]: Accepted password for deploy from 192.168.1.89 port 46080 ssh2
+Sep 06 00:27:37 linux-server sshd[38201]: Accepted password for devops from 203.0.113.225 port 40241 ssh2
+Sep 06 05:58:37 linux-server sshd[28390]: pam_unix(sshd:session): session closed for user admin
+Sep 05 06:26:37 linux-server sshd[3372]: pam_unix(sshd:session): session closed for user backup
+Sep 04 20:25:37 linux-server sshd[94922]: pam_unix(sshd:session): session closed for user ubuntu
+Aug 31 14:40:37 linux-server sshd[34179]: pam_unix(sshd:session): session opened for user devops by (uid=0)
+Sep 04 08:50:37 linux-server sshd[51635]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 05 20:17:37 linux-server sshd[2303]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Sep 06 10:20:37 linux-server sshd[71721]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 04 02:23:37 linux-server sshd[90359]: Accepted password for webmaster from 10.0.0.228 port 59742 ssh2
+Sep 03 04:00:37 linux-server sshd[44863]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 01 14:07:37 linux-server sshd[71823]: Accepted password for sarah from 10.0.0.212 port 64106 ssh2
+Sep 04 07:00:37 linux-server sshd[52123]: pam_unix(sshd:session): session opened for user ubuntu by (uid=0)
+Sep 01 01:10:37 linux-server sshd[67408]: pam_unix(sshd:session): session closed for user backup
+Sep 06 04:41:37 linux-server sshd[66454]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 04 18:32:37 linux-server sshd[20535]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 05 09:30:37 linux-server sshd[91152]: Accepted password for jenkins from 203.0.113.219 port 43054 ssh2
+Sep 05 19:21:37 linux-server sshd[91200]: Accepted password for centos from 172.16.0.146 port 57890 ssh2
+Sep 04 16:53:37 linux-server sshd[23062]: Accepted password for backup from 192.168.1.204 port 44059 ssh2
+Sep 05 04:10:37 linux-server sshd[49571]: pam_unix(sshd:session): session closed for user centos
+Sep 03 08:51:37 linux-server sshd[43249]: Accepted password for jenkins from 192.168.1.14 port 60832 ssh2
+Sep 04 12:17:37 linux-server sshd[68642]: Accepted password for john from 203.0.113.61 port 44879 ssh2
+Sep 01 22:56:37 linux-server sshd[48498]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 02 07:08:37 linux-server sshd[56714]: Accepted password for deploy from 192.168.1.195 port 40883 ssh2
+Sep 01 01:39:37 linux-server sshd[86117]: pam_unix(sshd:session): session closed for user developer
+Sep 05 13:33:37 linux-server sshd[19206]: pam_unix(sshd:session): session closed for user developer
+Sep 04 11:06:37 linux-server sshd[9650]: pam_unix(sshd:session): session closed for user ubuntu
+Sep 04 01:41:37 linux-server sshd[93894]: pam_unix(sshd:session): session closed for user admin
+Sep 04 09:14:37 linux-server sshd[51179]: pam_unix(sshd:session): session opened for user sarah by (uid=0)
+Sep 06 02:59:37 linux-server sshd[11298]: pam_unix(sshd:session): session closed for user john
+Sep 03 02:43:37 linux-server sshd[24376]: Accepted password for backup from 192.168.1.147 port 62450 ssh2
+Sep 03 06:36:37 linux-server sshd[56117]: pam_unix(sshd:session): session opened for user john by (uid=0)
+Sep 02 09:26:37 linux-server sshd[60882]: pam_unix(sshd:session): session opened for user centos by (uid=0)
+Sep 05 07:05:37 linux-server sshd[54063]: pam_unix(sshd:session): session opened for user jenkins by (uid=0)
+Sep 01 19:10:37 linux-server sshd[13114]: Accepted password for john from 10.0.0.72 port 59930 ssh2
+Sep 02 18:42:37 linux-server sshd[23838]: pam_unix(sshd:session): session closed for user sysadmin
+Sep 01 02:41:37 linux-server sshd[73750]: pam_unix(sshd:session): session closed for user sarah

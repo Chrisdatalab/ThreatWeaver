@@ -56,7 +56,6 @@ def detect_suspicious_download(events):
                 index=parts.index("-o")
                 destination=parts[index+1]
             elif "-O" in parts:
-                index=parts.index("-O")
                 if url:
                     destination=os.path.basename(url)
             

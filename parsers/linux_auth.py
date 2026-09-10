@@ -83,6 +83,34 @@ def parse_line(line: str) -> Event:
 
     invalid_search = re.search(invalid_pattern, message)
 
+    attributes = {}
+    sudo_pattern = (
+        r"(?P<user>\S+)\s*:\s*"
+        r"(?:TTY=(?P<tty>[^;]+)\s*;\s*)?"
+        r"(?:PWD=(?P<cwd>[^;]+)\s*;\s*)?"
+        r"USER=(?P<target_user>[^;]+)\s*;\s*"
+        r"COMMAND=(?P<command>.+)"
+    )
+    sudo_search = re.search(sudo_pattern, message)
+
+    if sudo_search:
+        user = sudo_search.group("user").strip()
+
+        attributes = {
+            "tty": (
+                sudo_search.group("tty").strip()
+                if sudo_search.group("tty")
+                else None
+            ),
+            "cwd": (
+                sudo_search.group("cwd").strip()
+                if sudo_search.group("cwd")
+                else None
+            ),
+            "target_user": sudo_search.group("target_user").strip(),
+            "command": sudo_search.group("command").strip(),
+        }
+
     if invalid_search:
         user = invalid_search.group("user")
         src_ip = invalid_search.group("src_ip")
@@ -108,6 +136,10 @@ def parse_line(line: str) -> Event:
         event_type = "ssh_session_close"
         action = "session"
         outcome = "success"
+    elif process == "sudo" and sudo_search:
+        event_type = "sudo_command"
+        action = "execute"
+        outcome = "success"
     return Event(
         source="linux",
         timestamp=timestamp,
@@ -121,5 +153,6 @@ def parse_line(line: str) -> Event:
         user=user,
         src_ip=src_ip,
         src_port=src_port,
+        attributes=attributes,
         raw=line.strip()
     )

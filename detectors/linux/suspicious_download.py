@@ -72,7 +72,7 @@ def detect_suspicious_download(events):
                 indicators.append("suspicious_extension")
 
            
-            if any(directory in destination for directory in SUSPICIOUS_DIRS):
+            if filename and any(name in filename.lower() for name in SUSPICIOUS_NAMES):
                 risk_score += 2
                 indicators.append("suspicious_filename")
 

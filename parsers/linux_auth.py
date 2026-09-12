@@ -2,13 +2,13 @@ import re
 from datetime import datetime
 from models.event import Event
 
-def parse_line(line: str) -> Event:
+def parse_line(line: str, year: int) -> Event:
    
     event_type = "unknown"
     action = "unknown"
     outcome = "unknown"
     message='unknown'
-    timestamp = "unknown"
+    timestamp = None
     host = "unknown"
     process = "unknown"
     pid = None
@@ -31,7 +31,14 @@ def parse_line(line: str) -> Event:
     match = re.match(pattern, line)
 
     if match:
-        timestamp=match.group("month")+" "+match.group("day")+" "+match.group("time")
+        
+        timestamp = datetime.strptime(
+            f"{year} "
+            f"{match.group('month')} "
+            f"{match.group('day')} "
+            f"{match.group('time')}",
+            "%Y %b %d %H:%M:%S"
+        )
         host=match.group("host")
         process=match.group("process")
         

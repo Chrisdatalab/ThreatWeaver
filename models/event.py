@@ -1,5 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Any
+from datetime import datetime
+
 
 #BaseModel做数据验证
 class Event(BaseModel):
@@ -7,8 +9,8 @@ class Event(BaseModel):
     event_id: str = "unknown"
 
     # 事件发生时间 / Event timestamp
-    timestamp: str = "unknown"
 
+    timestamp: datetime | None = None
     # 日志来源：linux / windows / web
     # Log source: linux / windows / web
     source: str = "unknown"
@@ -54,10 +56,10 @@ class Event(BaseModel):
     raw: str
 
     # 日志特有的扩展字段 / Source-specific extra attributes
-    attributes: dict[str, Any] = {}
+    attributes: dict[str, Any] = Field(default_factory=dict)
 
     # 事件标签 / Event tags
-    tags: list[str] = []
+    tags: list[str] = Field(default_factory=list)
 
     # 原始日志文件 / Source log file
     source_file: str = "unknown"

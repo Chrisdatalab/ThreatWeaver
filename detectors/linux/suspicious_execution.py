@@ -38,10 +38,12 @@ def detect_suspicious_execution(events):
             continue
         suspicious_execution=False
         details={}
+        executed_path=None
         
 
         if any(parts[0].startswith(argument) for argument in SUSPICIOUS_EXEC_DIRS):
             suspicious_execution = True
+            executed_path=parts[0]
            
         else:
             execu = os.path.basename(parts[0])
@@ -49,6 +51,7 @@ def detect_suspicious_execution(events):
                 for v in parts[1:]:
                     if any(v.startswith(directory) for directory in SUSPICIOUS_EXEC_DIRS):
                         suspicious_execution = True
+                        executed_path=v
                         break
         
             
@@ -57,6 +60,7 @@ def detect_suspicious_execution(events):
         if not suspicious_execution:
             continue
         details["raw_command"]=command
+        details["executed_path"]=executed_path
         security="HIGH"
         finding = Finding(
                     finding_type="suspicious_execution",

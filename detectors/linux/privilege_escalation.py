@@ -8,8 +8,35 @@ SHELL_COMMANDS = [
     "dash",
     "ksh",
     "fish",
-    "su",
 ]
+def shell_uses_command_option(args):
+    for arg in args:
+        if arg == "--":
+            break
+
+        if not arg.startswith("-") or arg == "-":
+            break
+
+        if arg == "--command" or arg.startswith("--command="):
+            return True
+
+        if not arg.startswith("--") and "c" in arg[1:]:
+            return True
+
+    return False
+def su_uses_command_option(args):
+    for arg in args:
+        if arg == "-c":
+            return True
+        if not arg.startswith("--") and arg.startswith("-") and "c" in arg[1:]:
+            return True
+        if arg == "--command":
+            return True
+        if arg.startswith("--command="):
+            return True
+        
+
+    return False
 def detect_privilege_escalation(events):
     findings = []
     for event in events:
@@ -23,7 +50,16 @@ def detect_privilege_escalation(events):
         details={}
         executable = os.path.basename(parts[0])
         target_user = event.attributes.get("target_user")
-        if target_user == "root" and event.user!= "root" and executable in SHELL_COMMANDS:
+        if target_user == "root" and event.user!= "root":
+            if executable == "su":
+                if su_uses_command_option(parts[1:]):
+                    continue
+
+            elif executable in SHELL_COMMANDS:
+                if shell_uses_command_option(parts[1:]):
+                    continue
+            else:
+                continue
             
             details["action"]="root_shell"
             details["executed_shell"]=executable

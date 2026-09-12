@@ -1,9 +1,9 @@
 from parsers import linux_auth
 from core import log_loader
-def linux_log(file_path):
+def linux_log(file_path,year):
     events=[]
     for line in log_loader.read_linux_log(file_path):
-        event = linux_auth.parse_line(line)
+        event = linux_auth.parse_line(line,year)
         # print(event)
         # print()
         events.append(event)

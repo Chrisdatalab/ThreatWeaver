@@ -3,8 +3,6 @@ from collections import defaultdict
 from models.event import Event
 from datetime import datetime, timedelta
 
-def parse_timestamp(timestamp: str) -> datetime:
-    return datetime.strptime(timestamp, "%b %d %H:%M:%S")
 def detect_ssh_password_spray(events: list[Event],threshold=5,
     window_minutes=5):
     findings=[]
@@ -23,16 +21,16 @@ def detect_ssh_password_spray(events: list[Event],threshold=5,
         key=(event.host,event.src_ip)
         groups[key].append(event)
     for key,fail_event in groups.items():
-        fail_event.sort(key=lambda event: parse_timestamp(event.timestamp))
+        fail_event.sort(key=lambda event: (event.timestamp))
         left=0
     
         for right in range(len(fail_event)):
 
-            right_time = parse_timestamp(fail_event[right].timestamp)
+            right_time = fail_event[right].timestamp
           
             while left <= right:
 
-                left_time = parse_timestamp(fail_event[left].timestamp)
+                left_time = fail_event[left].timestamp
 
                 time_difference = right_time - left_time
 

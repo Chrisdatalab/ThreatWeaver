@@ -1,6 +1,6 @@
 from typing import Any
 from pydantic import BaseModel
-
+from datetime import datetime
 from models.event import Event
 
 
@@ -37,10 +37,10 @@ class Finding(BaseModel):
     dst_ip: str = "unknown"
 
     # Finding 开始时间
-    start_time: str = "unknown"
+    start_time: datetime | None = None
 
     # Finding 结束时间
-    end_time: str = "unknown"
+    end_time: datetime | None = None
 
     # 相关事件数量
     event_count: int = 0

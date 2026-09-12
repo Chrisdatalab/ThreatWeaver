@@ -2,8 +2,6 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from models.finding import Finding
 
-def parse_timestamp(timestamp: str) -> datetime:
-    return datetime.strptime(timestamp, "%b %d %H:%M:%S")
 def detect_ssh_bruteforce(events,threshold=5,window_minutes=5):
     failed_events = []
 #登录失败列表
@@ -22,18 +20,18 @@ def detect_ssh_bruteforce(events,threshold=5,window_minutes=5):
         groups[key].append(event)
     findings = []
     for key,group_events in groups.items():
-        group_events.sort(key=lambda event: parse_timestamp(event.timestamp))
+        group_events.sort(key=lambda event: event.timestamp)
         #按时间排序
     
         left=0
         for right in range(len(group_events)):
 
-            right_time = parse_timestamp(group_events[right].timestamp)
+            right_time = group_events[right].timestamp
             
 
             while left <= right:
 
-                left_time = parse_timestamp(group_events[left].timestamp)
+                left_time = group_events[left].timestamp
 
                 time_difference = right_time - left_time
 

@@ -4,10 +4,13 @@ from services.analyzer import (
     run_correlations,
     finding_to_dict,
     findings_to_dict,
+    build_ai_context
 )
 
 from reporting.console import print_findings
-
+from services.ai_analyst import build_ai_prompt,analyze_security_context
+from database.db import get_connection
+from database.investigations import create_investigation
 def main():
 
     linux_findings = analyze_linux(
@@ -31,12 +34,16 @@ def main():
 
     correlated = run_correlations(findings)
 
-    print_findings(findings)
+    context = build_ai_context(findings, correlated)
 
-    print("\n========== CORRELATED ==========\n")
+    prompt = build_ai_prompt(context)
 
-    print_findings(correlated)
-    print(findings_to_dict(findings)[0])
+    analysis = analyze_security_context(context)
+
+    #print(analysis)
+  
+        
+
 
 
 if __name__ == "__main__":

@@ -153,3 +153,9 @@ def finding_to_dict(finding):
     return data
 def findings_to_dict(findings):
     return [finding_to_dict(finding) for finding in findings]
+
+def build_ai_context(findings, correlated):
+    return {
+        "findings": findings_to_dict(findings),
+        "correlations": findings_to_dict(correlated),
+    }

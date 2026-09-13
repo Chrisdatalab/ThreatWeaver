@@ -1,44 +1,43 @@
-from core.pipeline import linux_log
-from detectors.linux import ssh_bruteforce,sensitive_file_access,account_manipulation
-from detectors.linux import privilege_escalation,persistence,suspicious_download
-from detectors.linux import ssh_password_spray,suspicious_execution,log_tampering
-from detectors.linux import suspicious_permission_change,sensitive_archive,suspicious_privileged_shell
+from services.analyzer import (
+    analyze_linux,
+    analyze_web,
+    run_correlations,
+    finding_to_dict,
+    findings_to_dict,
+)
+
 from reporting.console import print_findings
-from correlation import ssh_to_privileged_shell, download_to_execution
 
 def main():
-    events = linux_log("data/samples/linux/attack/auth_attack_scenarios.log",year=2026)
 
-    findings = []
-
-    findings.extend(ssh_bruteforce.detect_ssh_bruteforce(events))
-    findings.extend(ssh_password_spray.detect_ssh_password_spray(events))
-    findings.extend(sensitive_file_access.detect_sensitive_file_access(events))
-    findings.extend(account_manipulation.detect_account_manipulation(events))
-    findings.extend(privilege_escalation.detect_privilege_escalation(events))
-    findings.extend(persistence.detect_persistence(events))
-    findings.extend(suspicious_download.detect_suspicious_download(events))
-    findings.extend(suspicious_execution.detect_suspicious_execution(events))
-    findings.extend(log_tampering.detect_log_tampering(events))
-    findings.extend(suspicious_permission_change.detect_suspicious_permission_change(events))
-    findings.extend(sensitive_archive.detect_sensitive_archive(events))
-    findings.extend(suspicious_privileged_shell.detect_suspicious_privileged_shell(events))
-
-    correlated = []
-
-    correlated.extend(
-        ssh_to_privileged_shell.correlate_ssh_to_privileged_shell(findings)
+    linux_findings = analyze_linux(
+        "data/samples/linux/attack/auth_attack_scenarios.log",
+        year=2026
     )
 
-    correlated.extend(
-        download_to_execution.correlate_download_to_execution(findings)
+    web_normal_findings = analyze_web(
+        "data/samples/web/normal/access_normal.log"
     )
-    
+
+    web_attack_findings = analyze_web(
+        "data/samples/web/attack/access_attack.log"
+    )
+
+    findings = (
+        linux_findings
+        + web_normal_findings
+        + web_attack_findings
+    )
+
+    correlated = run_correlations(findings)
+
     print_findings(findings)
-    print_findings(correlated)
-   # print_findings(suspicious_execution.detect_suspicious_execution(events))
 
-  
+    print("\n========== CORRELATED ==========\n")
+
+    print_findings(correlated)
+    print(findings_to_dict(findings)[0])
+
 
 if __name__ == "__main__":
     main()

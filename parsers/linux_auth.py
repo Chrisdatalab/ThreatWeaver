@@ -100,7 +100,53 @@ def parse_line(line: str, year: int) -> Event:
     )
     sudo_search = re.search(sudo_pattern, message)
 
-    if sudo_search:
+    sudo_pam_failure_pattern = (
+        r"pam_unix\(sudo:auth\): authentication failure;"
+        r".*user=(?P<user>\S+)"
+    )
+
+    sudo_pam_failure_search = re.search(
+        sudo_pam_failure_pattern,
+        message
+    )
+    sudo_incorrect_password_pattern = (
+        r"(?P<user>\S+)\s*:\s*"
+        r"(?P<attempts>\d+)\s+incorrect password attempt(?:s)?\s*;\s*"
+        r"TTY=(?P<tty>[^;]+)\s*;\s*"
+        r"PWD=(?P<cwd>[^;]+)\s*;\s*"
+        r"USER=(?P<target_user>[^;]+)\s*;\s*"
+        r"COMMAND=(?P<command>.+)"
+    )
+
+    sudo_incorrect_password_search = re.search(
+        sudo_incorrect_password_pattern,
+        message
+    )
+    if sudo_pam_failure_search:
+        user = sudo_pam_failure_search.group("user")
+
+        attributes = {
+            "failure_record": "pam"
+        }
+
+    elif sudo_incorrect_password_search:
+        user = sudo_incorrect_password_search.group("user").strip()
+
+        attributes = {
+            "failure_record": "sudo",
+            "attempts": int(
+                sudo_incorrect_password_search.group("attempts")
+            ),
+            "tty": sudo_incorrect_password_search.group("tty").strip(),
+            "cwd": sudo_incorrect_password_search.group("cwd").strip(),
+            "target_user": sudo_incorrect_password_search.group(
+                "target_user"
+            ).strip(),
+            "command": sudo_incorrect_password_search.group(
+                "command"
+            ).strip(),
+        }
+    elif sudo_search:
         user = sudo_search.group("user").strip()
 
         attributes = {
@@ -143,10 +189,19 @@ def parse_line(line: str, year: int) -> Event:
         event_type = "ssh_session_close"
         action = "session"
         outcome = "success"
+    elif process == "sudo" and (
+        sudo_pam_failure_search
+        or sudo_incorrect_password_search
+    ):
+        event_type = "sudo_auth_failure"
+        action = "authenticate"
+        outcome = "failure"
+
     elif process == "sudo" and sudo_search:
         event_type = "sudo_command"
         action = "execute"
         outcome = "success"
+   
     return Event(
         source="linux",
         timestamp=timestamp,

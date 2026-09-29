@@ -721,5 +721,6 @@ Dec 21 20:00:10 webserver sudo[10402]: root : TTY=pts/3 ; PWD=/tmp ; USER=root ;
 Dec 21 20:00:15 webserver sudo[10403]: root : TTY=pts/3 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/nice -n 19 /tmp/.kworker --background
 Dec 21 20:00:20 webserver sudo[10404]: root : TTY=pts/3 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'echo "@reboot root /tmp/.kworker --background" >> /etc/crontab'
 Dec 21 20:00:30 webserver sudo[10405]: root : TTY=pts/3 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/ps aux
-
+Dec 21 18:05:00 webserver sudo[10010]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/systemctl status auditd
+Dec 21 18:05:05 webserver sudo[10011]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/systemctl restart auditd
 # === END OF EXPANDED DATASET ===

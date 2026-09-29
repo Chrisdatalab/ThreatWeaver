@@ -13,6 +13,8 @@ from detectors.linux import (
     suspicious_permission_change,
     sensitive_archive,
     suspicious_privileged_shell,
+    security_control_disable,
+    firewall_manipulation,
 )
 
 from detectors.web import (
@@ -91,6 +93,17 @@ def analyze_linux(file_path, year):
 
     findings.extend(
         suspicious_privileged_shell.detect_suspicious_privileged_shell(
+            linux_events
+        )
+    )
+    findings.extend(
+        security_control_disable.detect_security_control_disable(
+            linux_events
+        )
+    )
+
+    findings.extend(
+        firewall_manipulation.detect_firewall_manipulation(
             linux_events
         )
     )

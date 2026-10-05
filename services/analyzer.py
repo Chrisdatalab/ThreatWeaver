@@ -15,6 +15,11 @@ from detectors.linux import (
     suspicious_privileged_shell,
     security_control_disable,
     firewall_manipulation,
+    reverse_shell,
+    shell_profile_persistence,
+    ssh_authorized_keys,
+    ssh_config_modification,
+    systemd_service_modification,
 )
 
 from detectors.web import (
@@ -106,6 +111,27 @@ def analyze_linux(file_path, year):
         firewall_manipulation.detect_firewall_manipulation(
             linux_events
         )
+    )
+    findings.extend(
+        shell_profile_persistence.detect_shell_profile_persistence(linux_events)
+    )
+
+    findings.extend(
+        ssh_authorized_keys.detect_ssh_authorized_key(linux_events)
+    )
+
+    findings.extend(
+        ssh_config_modification.detect_ssh_config_modification(linux_events)
+    )
+
+    findings.extend(
+        systemd_service_modification.detect_systemd_service_modification(
+            linux_events
+        )
+    )
+
+    findings.extend(
+        reverse_shell.detect_reverse_shell(linux_events)
     )
     return findings
 def analyze_web(file_path):

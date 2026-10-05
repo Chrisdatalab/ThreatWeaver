@@ -1,6 +1,6 @@
 from core.pipeline import linux_log
-from detectors.linux.suspicious_permission_change import (
-    detect_suspicious_permission_change
+from detectors.linux.reverse_shell import (
+    detect_reverse_shell
 )
 
 FILE_PATH = (
@@ -12,7 +12,7 @@ YEAR = 2026
 
 events = linux_log(FILE_PATH, YEAR)
 
-findings = detect_suspicious_permission_change(events)
+findings = detect_reverse_shell(events)
 
 print(f"TOTAL EVENTS: {len(events)}")
 print(f"TOTAL FINDINGS: {len(findings)}")

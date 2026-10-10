@@ -1,6 +1,6 @@
 from core.pipeline import linux_log
-from detectors.linux.reverse_shell import (
-    detect_reverse_shell
+from detectors.linux.suspicious_data_transfer import (
+    detect_suspicious_data_transfer
 )
 
 FILE_PATH = (
@@ -12,7 +12,7 @@ YEAR = 2026
 
 events = linux_log(FILE_PATH, YEAR)
 
-findings = detect_reverse_shell(events)
+findings = detect_suspicious_data_transfer(events)
 
 print(f"TOTAL EVENTS: {len(events)}")
 print(f"TOTAL FINDINGS: {len(findings)}")

